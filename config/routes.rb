@@ -4,8 +4,7 @@ Rails.application.routes.draw do
 
 
   resources :admins, only: [:index]
-  # devise_for :admins
   devise_for :admins, controllers: { registrations: 'admins/registrations', sessions: 'admins/sessions' }
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   root 'profile#show'
 end

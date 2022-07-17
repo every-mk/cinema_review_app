@@ -6,6 +6,56 @@
         <%= render "users/shared/error_messages", resource: resource %>
 
         <div class="field">
+          <div class="required"></div>
+          <%= f.label "名前" %><br />
+          <% if resource.profile.presence %>
+            <%= text_field :profile, :name, autofocus: true, autocomplete: "name", placeholder: "ユーザー名", class: "form-control",value: resource.profile.name %>
+          <% else %>
+            <%= text_field :profile, :name, autofocus: true, autocomplete: "name", placeholder: "ユーザー名", class: "form-control" %>
+          <% end %>
+        </div>
+
+        <div class="field">
+          <div class="required"></div>
+          <%= f.label "性別" %><br />
+          <% if resource.profile.presence %>
+            <%= text_field :profile, :sex, autofocus: true, autocomplete: "sex", placeholder: "性別", class: "form-control",value: resource.profile.sex %>
+          <% else %>
+            <%= text_field :profile, :sex, autofocus: true, autocomplete: "sex", placeholder: "性別", class: "form-control" %>
+          <% end %>
+        </div>
+
+        <div class="field">
+          <div class="required"></div>
+          <%= f.label "生年月日" %><br />
+          <% if resource.profile.presence %>
+            <%= text_field :profile, :date_of_birth, autofocus: true, autocomplete: "date_of_birth", placeholder: "生年月日", class: "form-control",value: resource.profile.date_of_birth %>
+          <% else %>
+            <%= text_field :profile, :date_of_birth, autofocus: true, autocomplete: "date_of_birth", placeholder: "生年月日", class: "form-control" %>
+          <% end %>
+        </div>
+
+        <div class="field">
+          <div class="required"></div>
+          <%= f.label "都道府県" %><br />
+          <% if resource.profile.presence %>
+            <%= text_field :profile, :prefecture, autofocus: true, autocomplete: "prefecture", placeholder: "都道府県", class: "form-control",value: resource.profile.prefecture %>
+          <% else %>
+            <%= text_field :profile, :prefecture, autofocus: true, autocomplete: "prefecture", placeholder: "都道府県", class: "form-control" %>
+          <% end %>
+        </div>
+
+        <div class="field">
+          <div class="required"></div>
+          <%= f.label "市区町村" %><br />
+          <% if resource.profile.presence %>
+            <%= text_field :profile, :municipality, autofocus: true, autocomplete: "municipality", placeholder: "市区町村", class: "form-control",value: resource.profile.municipality %>
+          <% else %>
+            <%= text_field :profile, :municipality, autofocus: true, autocomplete: "municipality", placeholder: "市区町村", class: "form-control" %>
+          <% end %>
+        </div>
+
+        <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control" %>
         </div>
