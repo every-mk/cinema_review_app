@@ -4,15 +4,21 @@
   <div class="row">
     <div class="user-nav user-nav-pc">
       <ul>
+        <li>
+          <%= link_to "アカウント", users_account_path, data: {"turbolinks": false} %>
+        </li>
         <li class="active">
-          <%= link_to "プロファイル", profile_path, data: {"turbolinks" => false} %>
+          <%= link_to "プロファイル", profile_path, data: {"turbolinks": false} %>
         </li>
       </ul>
     </div>
     <div class="user-nav user-nav-mobile">
       <ul>
+        <li>
+          <%= link_to "アカウント", users_account_path, data: {"turbolinks": false} %>
+        </li>
         <li class="active">
-          <%= link_to "プロファイル", profile_path, data: {"turbolinks" => false} %>
+          <%= link_to "プロファイル", profile_path, data: {"turbolinks": false} %>
         </li>
       </ul>
     </div>
