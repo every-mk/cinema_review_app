@@ -6,7 +6,6 @@ class CreateProfiles < ActiveRecord::Migration[6.1]
       t.date :date_of_birth
       t.string :prefecture
       t.string :municipality
-      t.text :image
       t.integer :user_id, null: false, unique: true
 
       t.timestamps

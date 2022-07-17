@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2022_07_17_054114) do
     t.date "date_of_birth"
     t.string "prefecture"
     t.string "municipality"
-    t.text "image"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

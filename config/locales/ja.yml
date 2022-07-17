@@ -1,1 +1,12 @@
 ja:
+  activerecord:
+    attributes:
+      profile:
+        name: 名前
+        sex: 性別
+        man: 男性
+        woman: 女性
+        date_of_birth: 生年月日
+        prefecture: 都道府県
+        municipality: 市区町村
+        image: アイコン画像
