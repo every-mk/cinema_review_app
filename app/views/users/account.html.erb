@@ -43,6 +43,9 @@
           <div class="row">
             <%= link_to "編集", edit_user_registration_path, class: "btn btn-primary", data: {"turbolinks": false} %>
           </div>
+          <div class="row">
+            <%= link_to "アカウント削除", users_path, class: "btn btn-primary", data: { method: :delete, confirm: "本当に削除しますか？" } %>
+          </div>
         </div>
       </div>
     </div>

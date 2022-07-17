@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'users/account', to: 'users#account'
+  resource :users, only: [:destroy]
 
   scope '/users' do
     resource :profile, only: [:show, :update]
