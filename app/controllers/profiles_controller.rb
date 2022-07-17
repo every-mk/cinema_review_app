@@ -5,10 +5,8 @@ class ProfilesController < ApplicationController
   def update
     if current_user.profile.update(profile_update_params)
       flash[:notice] = "プロファイル更新しました"
-      # redirect_to profile_path
-      redirect_to root_path
+      redirect_to profile_path
     else
-      binding.pry
       render "show"
     end
 
