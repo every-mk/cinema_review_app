@@ -10,9 +10,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    build_resource(sign_up_params)
+    resource.build_profile(configure_profile_create_params)
+    resource.save if resource.valid? & resource.profile.valid? & true
+    yield resource if block_given?
+    if resource.persisted?
+      create_default_profile_image
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      flash[:errors_full_messages] = resource.profile.errors.full_messages.concat resource.errors.full_messages.concat
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -51,12 +71,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    super(resource)
-  end
+  # def after_sign_up_path_for(resource)
+  #   super(resource)
+  # end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def configure_profile_create_params
+    params.require(:profile).permit(:name, :sex, :date_of_birth, :prefecture, :municipality)
+  end
+
+  def create_default_profile_image
+    resource.profile.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'profile', 'default_icon.jpeg')), filename: 'default_icon.jpeg', content_type: 'image/jpeg')
+  end
 end
