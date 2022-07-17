@@ -83,7 +83,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def configure_profile_create_params
-    params.require(:profile).permit(:name)
+    params.require(:profile).permit(:name, :sex, :date_of_birth, :prefecture, :municipality)
   end
 
   def create_default_profile_image
