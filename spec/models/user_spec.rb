@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
   describe '#create' do
     let!(:user) { create(:user) }
     let(:new_user) { build(:user) }
+    let(:email_is_null_user) { build(:user, email: null) }
     let(:duplicate_email_user) { build(:user, email: user.email) }
     let(:password_match_user) { build(:user, password: 'password', password_confirmation: 'password') }
     let(:password_not_match_user) { build(:user, password: 'password123', password_confirmation: 'password456') }
@@ -31,7 +32,8 @@ RSpec.describe User, type: :model do
   end
 
   describe '#update' do
-    let!(:user) { create(:user) }
+    let(:user) { create(:user) }
+    let!(:user1) { create(:user) }
 
     it "when have not change, it can be updated" do
       expect(user).to be_valid
@@ -40,6 +42,11 @@ RSpec.describe User, type: :model do
     it "when change email, it can be updated" do
       user.email = 'change_email@gmail.com'
       expect(user).to be_valid
+    end
+
+    it "when change duplicate email, it can be not updated" do
+      user.email = user1.email
+      expect(user).not_to be_valid
     end
 
     it "when change password for match, it can be updated" do
@@ -62,7 +69,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '#destroy' do
-    let!(:user) { create(:user) }
+    let(:user) { create(:user) }
 
     it "when user destory, deleted" do
       user.destroy
