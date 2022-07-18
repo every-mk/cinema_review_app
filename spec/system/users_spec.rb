@@ -39,32 +39,32 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "©︎ 2022 S.K"
     end
 
-    scenario 'when you click the link, the account information will be displayed' do
+    scenario 'when you pc version account click the link, the account information will be displayed' do
       find("div[class='user-nav user-nav-pc']").click_on "アカウント"
       expect(page).to have_selector 'p', text: "アカウント"
     end
 
-    scenario 'when you click the link, the account information will be displayed' do
+    scenario 'when you mobile version account click the link, the account information will be displayed' do
       find("div[class='user-nav user-nav-mobile']").click_on "アカウント"
       expect(page).to have_selector 'p', text: "アカウント"
     end
 
-    scenario 'when you click the link, the account information will be displayed' do
+    scenario 'when you pc version profile click the link, the profile information will be displayed' do
       find("div[class='user-nav user-nav-pc']").click_on "プロファイル"
       expect(page).to have_selector 'p', text: "プロファイル"
     end
 
-    scenario 'when you click the link, the account information will be displayed' do
+    scenario 'when you mobile version profile click the link, the profile information will be displayed' do
       find("div[class='user-nav user-nav-mobile']").click_on "プロファイル"
       expect(page).to have_selector 'p', text: "プロファイル"
     end
 
-    scenario 'when you click the link, the account information will be displayed' do
+    scenario 'when you edit click the link, the account edit will be displayed' do
       click_link "編集"
       expect(page).to have_selector 'h1', text: "アカウント編集"
     end
 
-    scenario 'when you click the link, the account information will be displayed', js: true do
+    scenario 'when you account delete click the link, account deleted', js: true do
       click_link "アカウント削除"
       expect(page.accept_confirm).to eq "本当に削除しますか？"
       expect(page).to have_content "アカウントを削除しました"
