@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def show
   end
 
@@ -11,7 +11,6 @@ class ProfilesController < ApplicationController
     else
       render "show"
     end
-
   end
 
   private
