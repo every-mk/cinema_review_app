@@ -60,7 +60,7 @@ RSpec.describe "Users", type: :system do
       end.to change(User, :count).by(1)
     end
 
-    scenario "when name is not fill, created account" do
+    scenario "when name is not fill, not created account" do
       choose "女性"
       fill_in "profile_date_of_birth", with: profile.date_of_birth
       fill_in "profile_prefecture", with: profile.prefecture
@@ -72,7 +72,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "名前を入力してください"
     end
 
-    scenario "when date of birth is not fill, created account" do
+    scenario "when date of birth is not fill, not created account" do
       fill_in "profile_name", with: profile.name
       choose "女性"
       fill_in "profile_prefecture", with: profile.prefecture
@@ -84,7 +84,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "生年月日を入力してください"
     end
 
-    scenario "when prefecture is fill, created account" do
+    scenario "when prefecture is fill, not created account" do
       fill_in "profile_name", with: profile.name
       choose "女性"
       fill_in "profile_date_of_birth", with: profile.date_of_birth
@@ -96,7 +96,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "都道府県を入力してください"
     end
 
-    scenario "when municipality is fill, created account" do
+    scenario "when municipality is fill, not created account" do
       fill_in "profile_name", with: profile.name
       choose "女性"
       fill_in "profile_date_of_birth", with: profile.date_of_birth
@@ -108,7 +108,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "市区町村を入力してください"
     end
 
-    scenario "when email is fill, created account" do
+    scenario "when email is fill, not created account" do
       fill_in "profile_name", with: profile.name
       choose "女性"
       fill_in "profile_date_of_birth", with: profile.date_of_birth
@@ -120,7 +120,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "Eメールを入力してください"
     end
 
-    scenario "when password is fill, created account" do
+    scenario "when password is fill, not created account" do
       fill_in "profile_name", with: profile.name
       choose "女性"
       fill_in "profile_date_of_birth", with: profile.date_of_birth
@@ -132,7 +132,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "パスワードを入力してください"
     end
 
-    scenario "when password confirmation is fill, created account" do
+    scenario "when password confirmation is fill, not created account" do
       fill_in "profile_name", with: profile.name
       choose "女性"
       fill_in "profile_date_of_birth", with: profile.date_of_birth
@@ -147,6 +147,58 @@ RSpec.describe "Users", type: :system do
     scenario "when you login click the link, login will be displayed" do
       click_link "既にアカウントをお持ちの方はログイン"
       expect(page).to have_selector 'p', text: "ログイン"
+    end
+
+    scenario "when you resend authentication confirmation email click the link, resend authentication confirmation email will be displayed" do
+      click_link "認証確認メールが届かない場合"
+      expect(page).to have_selector 'p', text: "認証確認メールが届かない場合"
+    end
+  end
+
+  describe "#sign_in" do
+    before do
+      visit new_user_session_path
+    end
+
+    it "when displayed, the content is displayed correctly" do
+      expect(page).to have_selector 'p', text: "ログイン"
+      expect(page).to have_content "Eメール"
+      expect(page).to have_content "パスワード"
+      expect(page).to have_selector "input[value='ログイン']"
+      expect(page).to have_content "新しいアカウントを作成"
+      expect(page).to have_content "パスワードを忘れた場合"
+      expect(page).to have_content "認証確認メールが届かない場合"
+    end
+
+    scenario "when all fill, logined" do
+      fill_in "user_email", with: user.email
+      fill_in "user_password", with: build_user.password
+      click_button "ログイン"
+      expect(page).to have_content "ログインしました。"
+    end
+
+    scenario "when email is not fill, not logined" do
+      fill_in "user_password", with: build_user.password
+      click_button "ログイン"
+      expect(page).to have_content "Eメールまたはパスワードが違います。"
+    end
+
+    scenario "when password is not fill, not logined" do
+      fill_in "user_email", with: user.email
+      click_button "ログイン"
+      expect(page).to have_content "Eメールまたはパスワードが違います。"
+    end
+
+    scenario "when password is wrong, not logined" do
+      fill_in "user_email", with: user.email
+      fill_in "user_password", with: "wrong_password"
+      click_button "ログイン"
+      expect(page).to have_content "Eメールまたはパスワードが違います。"
+    end
+
+    scenario "when you login click the link, login will be displayed" do
+      click_link "パスワードを忘れた場合"
+      expect(page).to have_selector 'p', text: "パスワードを忘れた場合"
     end
 
     scenario "when you resend authentication confirmation email click the link, resend authentication confirmation email will be displayed" do
