@@ -213,13 +213,6 @@ RSpec.describe "Users", type: :system do
       visit users_account_path
     end
 
-    it "when displayed, the header is displayed correctly" do
-      expect(page).to have_selector "img[alt=サイトのロゴ画像]"
-      # ToDo: サイトのログ画像URLを追加する.
-      expect(page).to have_selector "img[alt=アイコン画像]"
-      expect(page).to have_selector "img[src='#{url_for(profile.image.attachment)}']"
-    end
-
     it "when displayed, the content is displayed correctly" do
       expect(page).to have_selector 'li', text: "アカウント"
       expect(page).to have_selector 'li', text: "プロファイル"
@@ -230,10 +223,6 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "*********"
       expect(page).to have_content "編集"
       expect(page).to have_content "アカウント削除"
-    end
-
-    it "when displayed, the footer is displayed correctly" do
-      expect(page).to have_content "©︎ 2022 S.K"
     end
 
     scenario "when you pc version account click the link, the account information will be displayed" do
