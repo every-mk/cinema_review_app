@@ -202,6 +202,60 @@ RSpec.describe "Users", type: :system do
     end
   end
 
+  describe "confirmation#new" do
+    before do
+      visit new_user_confirmation_path
+    end
+
+    it "when displayed, the content is displayed correctly" do
+      expect(page).to have_selector 'p', text: "認証確認メールが届かない場合"
+      expect(page).to have_content "Eメール"
+      expect(page).to have_selector "input[value='認証確認メールを再送する']"
+      expect(page).to have_content "既にアカウントをお持ちの方はログイン"
+      expect(page).to have_content "新しいアカウントを作成"
+      expect(page).to have_content "パスワードを忘れた場合"
+    end
+
+    scenario "if account has been verified, no email will be sent." do
+      fill_in "user_email", with: user.email
+      click_button "認証確認メールを再送する"
+      expect(page).to have_content "Eメールは既に登録済みです。ログインしてください。"
+    end
+
+    scenario "if account has been not verified, email will be sent." do
+      build_user.save
+      fill_in "user_email", with: build_user.email
+      click_button "認証確認メールを再送する"
+      expect(page).to have_content "アカウントの有効化について数分以内にメールでご連絡します。"
+    end
+
+    scenario "when email is not fill, email is not send" do
+      click_button "認証確認メールを再送する"
+      expect(page).to have_content "Eメールを入力してください"
+    end
+
+    scenario "when email is wrong, email is not send" do
+      fill_in "user_email", with: "wrong_email@gmail.com"
+      click_button "認証確認メールを再送する"
+      expect(page).to have_content "Eメールは見つかりませんでした。"
+    end
+
+    scenario "when you login click the link, login will be displayed" do
+      click_link "既にアカウントをお持ちの方はログイン"
+      expect(page).to have_selector 'p', text: "ログイン"
+    end
+
+    scenario "when you new account click the link, sign up will be displayed" do
+      click_link "新しいアカウントを作成"
+      expect(page).to have_selector 'p', text: "新しいアカウントを作成"
+    end
+
+    scenario "when forget password click the link, login will be displayed" do
+      click_link "パスワードを忘れた場合"
+      expect(page).to have_selector 'p', text: "パスワードを忘れた場合"
+    end
+  end
+
   describe "#sign_in" do
     before do
       visit new_user_session_path
@@ -248,7 +302,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_selector 'p', text: "新しいアカウントを作成"
     end
 
-    scenario "when you login click the link, login will be displayed" do
+    scenario "when forget password click the link, login will be displayed" do
       click_link "パスワードを忘れた場合"
       expect(page).to have_selector 'p', text: "パスワードを忘れた場合"
     end
