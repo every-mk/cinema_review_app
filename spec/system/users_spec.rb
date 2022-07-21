@@ -155,6 +155,53 @@ RSpec.describe "Users", type: :system do
     end
   end
 
+  describe "password#new" do
+    before do
+      visit new_user_password_path
+    end
+
+    it "when displayed, the content is displayed correctly" do
+      expect(page).to have_selector 'p', text: "パスワードを忘れた場合"
+      expect(page).to have_content "Eメール"
+      expect(page).to have_selector "input[value='パスワード再設定メールを送信する']"
+      expect(page).to have_content "既にアカウントをお持ちの方はログイン"
+      expect(page).to have_content "新しいアカウントを作成"
+      expect(page).to have_content "認証確認メールが届かない場合"
+    end
+
+    scenario "when email is not wrong, email is send" do
+      fill_in "user_email", with: user.email
+      click_button "パスワード再設定メールを送信する"
+      expect(page).to have_content "パスワードの再設定について数分以内にメールでご連絡いたします。"
+    end
+
+    scenario "when email is not fill, email is not send" do
+      click_button "パスワード再設定メールを送信する"
+      expect(page).to have_content "Eメールを入力してください"
+    end
+
+    scenario "when email is wrong, email is not send" do
+      fill_in "user_email", with: "wrong_email@gmail.com"
+      click_button "パスワード再設定メールを送信する"
+      expect(page).to have_content "Eメールは見つかりませんでした。"
+    end
+
+    scenario "when you login click the link, login will be displayed" do
+      click_link "既にアカウントをお持ちの方はログイン"
+      expect(page).to have_selector 'p', text: "ログイン"
+    end
+
+    scenario "when you new account click the link, sign up will be displayed" do
+      click_link "新しいアカウントを作成"
+      expect(page).to have_selector 'p', text: "新しいアカウントを作成"
+    end
+
+    scenario "when you resend authentication confirmation email click the link, resend authentication confirmation email will be displayed" do
+      click_link "認証確認メールが届かない場合"
+      expect(page).to have_selector 'p', text: "認証確認メールが届かない場合"
+    end
+  end
+
   describe "#sign_in" do
     before do
       visit new_user_session_path
@@ -194,6 +241,11 @@ RSpec.describe "Users", type: :system do
       fill_in "user_password", with: "wrong_password"
       click_button "ログイン"
       expect(page).to have_content "Eメールまたはパスワードが違います。"
+    end
+
+    scenario "when you new account click the link, sign up will be displayed" do
+      click_link "新しいアカウントを作成"
+      expect(page).to have_selector 'p', text: "新しいアカウントを作成"
     end
 
     scenario "when you login click the link, login will be displayed" do
