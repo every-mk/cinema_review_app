@@ -363,4 +363,70 @@ RSpec.describe "Users", type: :system do
       expect(User.exists?(id: user.id)).to be false
     end
   end
+
+  describe "users#edit" do
+    before do
+      sign_in user
+      visit edit_user_registration_path
+    end
+
+    it "when displayed, the content is displayed correctly" do
+      expect(page).to have_selector 'li', text: "設定"
+      expect(page).to have_selector 'li', text: "ログアウト"
+      expect(page).to have_selector 'h1', text: "アカウント編集"
+      expect(page).to have_content "メールアドレス"
+      expect(page).to have_content "変更後パスワード（変更する場合のみ入力）"
+      expect(page).to have_content "スワード確認用（変更する場合のみ入力）"
+      expect(page).to have_content "現在のパスワード"
+      expect(page).to have_selector "input[value='更新']"
+      expect(page).to have_content "戻る"
+    end
+
+    scenario "when all fill, updated" do
+      fill_in "user_email", with: "update_email@gmail.com"
+      fill_in "user_password", with: "update_password"
+      fill_in "user_password_confirmation", with: "update_password"
+      fill_in "user_current_password", with: user.password
+      click_button "更新"
+      expect(page).to have_content "アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。"
+    end
+
+    scenario "when password is not fill, not updated" do
+      fill_in "user_email", with: user.email
+      fill_in "user_current_password", with: user.password
+      click_button "更新"
+      expect(page).to have_content "アカウント情報を変更しました。"
+    end
+
+    scenario "when email is not fill, not updated" do
+      fill_in "user_email", with: "update_email@gmail.com"
+      fill_in "user_current_password", with: user.password
+      click_button "更新"
+      expect(page).to have_content "アカウント情報を変更しました。"
+    end
+
+    scenario "when password is fill, not updated" do
+      fill_in "user_password_confirmation", with: "update_password"
+      click_button "更新"
+      expect(page).to have_content "パスワード（確認用）とパスワードの入力が一致しません"
+    end
+
+    scenario "when password confirmation is fill, not updated" do
+      fill_in "user_password", with: "update_password"
+      click_button "更新"
+      expect(page).to have_content "パスワード（確認用）とパスワードの入力が一致しません"
+    end
+
+    scenario "when change password is wrong, not updated" do
+      fill_in "user_password", with: "update_password"
+      fill_in "user_password_confirmation", with: "update_wrong_password"
+      click_button "更新"
+      expect(page).to have_content "パスワード（確認用）とパスワードの入力が一致しません"
+    end
+
+    scenario "when you back click the link, the account will be displayed" do
+      click_link "戻る"
+      expect(page).to have_content "アカウント"
+    end
+  end
 end
