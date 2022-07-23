@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'admins/guest_sign_in', to: 'admins#guest_sign_in'
   get 'users/guest_sign_in', to: 'users#guest_sign_in'
   get 'users/account',       to: 'users#account'
   resource :users, only: [:destroy]

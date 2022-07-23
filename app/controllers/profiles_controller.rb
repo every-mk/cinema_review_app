@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    if current_user.email == GUEST_USER_EMAIL
+    if current_user.email == GUEST_EMAIL
       flash[:alert] = "ゲストユーザーはプロファイルを編集できません"
       render "show"
     elsif current_user.profile.update(profile_update_params)

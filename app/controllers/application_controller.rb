@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  GUEST_USER_EMAIL = "guest@example.com".freeze
+  GUEST_EMAIL = "guest@example.com".freeze
 
   private
 

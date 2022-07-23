@@ -16,7 +16,8 @@
       <%= f.submit "ログイン", class: "form-control btn-primary" %>
     </div>
   <% end %>
-
+  
+  <%= link_to "ゲストログイン", admins_guest_sign_in_path, data: {"turbolinks": false} %><br />
   <%= render "admins/shared/links" %>
   </div>
 </div>

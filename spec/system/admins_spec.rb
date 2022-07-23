@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Admins", type: :system do
   let!(:admin) { create(:admin) }
   let(:build_admin) { build(:admin, email: "build_admin@gmail.com") }
+  let(:guest_admin) { create(:user, email: "guest@example.com") }
 
   describe "#sign_up" do
     before do
@@ -59,41 +60,54 @@ RSpec.describe "Admins", type: :system do
   end
 
   describe "#sign_in" do
+    describe "user logined" do
+      before do
+        visit new_admin_session_path
+      end
+
+      it "when displayed, the content is displayed correctly" do
+        expect(page).to have_selector 'p', text: "管理者ログイン"
+        expect(page).to have_content "Eメール"
+        expect(page).to have_content "パスワード"
+        expect(page).to have_selector "input[value='ログイン']"
+      end
+
+      scenario "when all fill, logined" do
+        fill_in "admin_email", with: admin.email
+        fill_in "admin_password", with: build_admin.password
+        click_button "ログイン"
+        expect(page).to have_content "ログインしました。"
+      end
+
+      scenario "when email is not fill, not logined" do
+        fill_in "admin_password", with: build_admin.password
+        click_button "ログイン"
+        expect(page).to have_content "Eメールまたはパスワードが違います。"
+      end
+
+      scenario "when password is not fill, not logined" do
+        fill_in "admin_email", with: admin.email
+        click_button "ログイン"
+        expect(page).to have_content "Eメールまたはパスワードが違います。"
+      end
+
+      scenario "when password is wrong, not logined" do
+        fill_in "admin_email", with: admin.email
+        fill_in "admin_password", with: "wrong_password"
+        click_button "ログイン"
+        expect(page).to have_content "Eメールまたはパスワードが違います。"
+      end
+    end
+  end
+
+  describe "guest user logined" do
     before do
       visit new_admin_session_path
     end
 
-    it "when displayed, the content is displayed correctly" do
-      expect(page).to have_selector 'p', text: "管理者ログイン"
-      expect(page).to have_content "Eメール"
-      expect(page).to have_content "パスワード"
-      expect(page).to have_selector "input[value='ログイン']"
-    end
-
-    scenario "when all fill, logined" do
-      fill_in "admin_email", with: admin.email
-      fill_in "admin_password", with: build_admin.password
-      click_button "ログイン"
+    scenario "when you guest login click the link, logined" do
+      click_link "ゲストログイン"
       expect(page).to have_content "ログインしました。"
-    end
-
-    scenario "when email is not fill, not logined" do
-      fill_in "admin_password", with: build_admin.password
-      click_button "ログイン"
-      expect(page).to have_content "Eメールまたはパスワードが違います。"
-    end
-
-    scenario "when password is not fill, not logined" do
-      fill_in "admin_email", with: admin.email
-      click_button "ログイン"
-      expect(page).to have_content "Eメールまたはパスワードが違います。"
-    end
-
-    scenario "when password is wrong, not logined" do
-      fill_in "admin_email", with: admin.email
-      fill_in "admin_password", with: "wrong_password"
-      click_button "ログイン"
-      expect(page).to have_content "Eメールまたはパスワードが違います。"
     end
   end
 end
