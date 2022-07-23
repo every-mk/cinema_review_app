@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '#update' do
-    let(:user) { create(:user) }
+    let!(:user) { create(:user) }
     let!(:user1) { create(:user) }
 
     it "when have not change, it can be updated" do

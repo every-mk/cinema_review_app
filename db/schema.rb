@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_17_054114) do
+ActiveRecord::Schema.define(version: 2022_07_23_134248) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,23 @@ ActiveRecord::Schema.define(version: 2022_07_17_054114) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "cinemas", charset: "utf8mb3", force: :cascade do |t|
+    t.string "title"
+    t.datetime "screen_time"
+    t.string "birthplace"
+    t.string "movie_rating"
+    t.string "director"
+    t.string "original"
+    t.string "appearance"
+    t.string "screenwriter"
+    t.string "distribution"
+    t.date "start_date"
+    t.string "story"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_cinemas_on_title", unique: true
   end
 
   create_table "profiles", charset: "utf8mb3", force: :cascade do |t|
