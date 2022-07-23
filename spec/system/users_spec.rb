@@ -3,12 +3,16 @@ require 'rails_helper'
 RSpec.describe "Users", type: :system do
   let(:user) { create(:user, profile: profile) }
   let(:build_user) { build(:user, email: "build_user@gmail.com", profile: profile1) }
+  let(:guest_user) { create(:user, email: "guest@example.com", profile: profile2) }
   let(:profile) { build(:profile) }
   let(:profile1) { build(:profile) }
+  let(:profile2) { build(:profile) }
 
   before do
     profile.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'profile', 'default_icon.jpeg')), filename: 'default_icon.jpeg', content_type: 'image/jpeg')
+    profile2.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'profile', 'default_icon.jpeg')), filename: 'default_icon.jpeg', content_type: 'image/jpeg')
     user.confirm
+    guest_user.confirm
   end
 
   describe "#sign_up" do
@@ -266,6 +270,7 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "Eメール"
       expect(page).to have_content "パスワード"
       expect(page).to have_selector "input[value='ログイン']"
+      expect(page).to have_content "ゲストログイン"
       expect(page).to have_content "新しいアカウントを作成"
       expect(page).to have_content "パスワードを忘れた場合"
       expect(page).to have_content "認証確認メールが届かない場合"
@@ -297,6 +302,11 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "Eメールまたはパスワードが違います。"
     end
 
+    scenario "when you guest login click the link, logined" do
+      click_link "ゲストログイン"
+      expect(page).to have_content "ログインしました。"
+    end
+
     scenario "when you new account click the link, sign up will be displayed" do
       click_link "新しいアカウントを作成"
       expect(page).to have_selector 'p', text: "新しいアカウントを作成"
@@ -314,53 +324,69 @@ RSpec.describe "Users", type: :system do
   end
 
   describe "#account" do
-    before do
-      sign_in user
-      visit users_account_path
+    describe "user logined" do
+      before do
+        sign_in user
+        visit users_account_path
+      end
+
+      it "when displayed, the content is displayed correctly" do
+        expect(page).to have_selector 'li', text: "アカウント"
+        expect(page).to have_selector 'li', text: "プロファイル"
+        expect(page).to have_selector 'p', text: "アカウント"
+        expect(page).to have_content "プロファイル"
+        expect(page).to have_content "メールアドレス"
+        expect(page).to have_content user.email
+        expect(page).to have_content "*********"
+        expect(page).to have_content "編集"
+        expect(page).to have_content "アカウント削除"
+      end
+
+      scenario "when you pc version account click the link, the account information will be displayed" do
+        find("div[class='user-nav user-nav-pc']").click_on "アカウント"
+        expect(page).to have_selector 'p', text: "アカウント"
+      end
+
+      scenario "when you mobile version account click the link, the account information will be displayed" do
+        find("div[class='user-nav user-nav-mobile']").click_on "アカウント"
+        expect(page).to have_selector 'p', text: "アカウント"
+      end
+
+      scenario "when you pc version profile click the link, the profile information will be displayed" do
+        find("div[class='user-nav user-nav-pc']").click_on "プロファイル"
+        expect(page).to have_selector 'p', text: "プロファイル"
+      end
+
+      scenario "when you mobile version profile click the link, the profile information will be displayed" do
+        find("div[class='user-nav user-nav-mobile']").click_on "プロファイル"
+        expect(page).to have_selector 'p', text: "プロファイル"
+      end
+
+      scenario "when you edit click the link, the account edit will be displayed" do
+        click_link "編集"
+        expect(page).to have_selector 'h1', text: "アカウント編集"
+      end
+
+      scenario "when you account delete click the link, account deleted", js: true do
+        click_link "アカウント削除"
+        expect(page.accept_confirm).to eq "本当に削除しますか？"
+        expect(page).to have_content "アカウントを削除しました"
+        expect(User.exists?(id: user.id)).to be false
+      end
     end
 
-    it "when displayed, the content is displayed correctly" do
-      expect(page).to have_selector 'li', text: "アカウント"
-      expect(page).to have_selector 'li', text: "プロファイル"
-      expect(page).to have_selector 'p', text: "アカウント"
-      expect(page).to have_content "プロファイル"
-      expect(page).to have_content "メールアドレス"
-      expect(page).to have_content user.email
-      expect(page).to have_content "*********"
-      expect(page).to have_content "編集"
-      expect(page).to have_content "アカウント削除"
-    end
+    describe "guest user logined" do
+      before do
+        sign_in guest_user
+        visit users_account_path
+      end
 
-    scenario "when you pc version account click the link, the account information will be displayed" do
-      find("div[class='user-nav user-nav-pc']").click_on "アカウント"
-      expect(page).to have_selector 'p', text: "アカウント"
-    end
-
-    scenario "when you mobile version account click the link, the account information will be displayed" do
-      find("div[class='user-nav user-nav-mobile']").click_on "アカウント"
-      expect(page).to have_selector 'p', text: "アカウント"
-    end
-
-    scenario "when you pc version profile click the link, the profile information will be displayed" do
-      find("div[class='user-nav user-nav-pc']").click_on "プロファイル"
-      expect(page).to have_selector 'p', text: "プロファイル"
-    end
-
-    scenario "when you mobile version profile click the link, the profile information will be displayed" do
-      find("div[class='user-nav user-nav-mobile']").click_on "プロファイル"
-      expect(page).to have_selector 'p', text: "プロファイル"
-    end
-
-    scenario "when you edit click the link, the account edit will be displayed" do
-      click_link "編集"
-      expect(page).to have_selector 'h1', text: "アカウント編集"
-    end
-
-    scenario "when you account delete click the link, account deleted", js: true do
-      click_link "アカウント削除"
-      expect(page.accept_confirm).to eq "本当に削除しますか？"
-      expect(page).to have_content "アカウントを削除しました"
-      expect(User.exists?(id: user.id)).to be false
+      scenario "when you account delete click the link, account not deleted", js: true do
+        click_link "アカウント削除"
+        expect(page.accept_confirm).to eq "本当に削除しますか？"
+        expect(page).to have_content "ゲストユーザーは削除できません"
+        expect(User.exists?(id: user.id)).to be true
+      end
     end
   end
 
@@ -431,26 +457,61 @@ RSpec.describe "Users", type: :system do
   end
 
   describe "profile#show" do
+    describe "user logined" do
+      before do
+        sign_in user
+        visit profile_path
+      end
+
+      it "when displayed, the content is displayed correctly" do
+        expect(page).to have_selector 'p', text: "プロファイル"
+        expect(page).to have_content "アイコン画像"
+        expect(page).to have_content "名前"
+        expect(page).to have_content "性別"
+        expect(page).to have_content "男性"
+        expect(page).to have_content "女性"
+        expect(page).to have_content "生年月日"
+        expect(page).to have_content "都道府県"
+        expect(page).to have_content "市区町村"
+        expect(page).to have_selector "input[value='更新']"
+        expect(page).to have_content "戻る"
+      end
+
+      scenario "when all fill, updated" do
+        attach_file 'profile_image', "#{Rails.root}/spec/fixtures/profile/sample_icon.jpeg"
+        fill_in "profile_name", with: "update_name"
+        choose "女性"
+        fill_in "profile_date_of_birth", with: "2022/01/01"
+        fill_in "profile_prefecture", with: "北海道"
+        fill_in "profile_municipality", with: "札幌市"
+        click_button "更新"
+        expect(page).to have_content "プロファイル更新しました"
+      end
+
+      scenario "when icon is not fill, not created account" do
+        fill_in "profile_name", with: "update_name"
+        choose "女性"
+        fill_in "profile_date_of_birth", with: "2022/01/01"
+        fill_in "profile_prefecture", with: "北海道"
+        fill_in "profile_municipality", with: "札幌市"
+        click_button "更新"
+        expect(page).to have_content "プロファイル更新しました"
+      end
+
+      scenario "when you back click the link, the account will be displayed" do
+        click_link "戻る"
+        expect(page).to have_content "アカウント"
+      end
+    end
+  end
+
+  describe "guest user logined" do
     before do
-      sign_in user
+      sign_in guest_user
       visit profile_path
     end
 
-    it "when displayed, the content is displayed correctly" do
-      expect(page).to have_selector 'p', text: "プロファイル"
-      expect(page).to have_content "アイコン画像"
-      expect(page).to have_content "名前"
-      expect(page).to have_content "性別"
-      expect(page).to have_content "男性"
-      expect(page).to have_content "女性"
-      expect(page).to have_content "生年月日"
-      expect(page).to have_content "都道府県"
-      expect(page).to have_content "市区町村"
-      expect(page).to have_selector "input[value='更新']"
-      expect(page).to have_content "戻る"
-    end
-
-    scenario "when all fill, updated" do
+    scenario "when all fill, not updated" do
       attach_file 'profile_image', "#{Rails.root}/spec/fixtures/profile/sample_icon.jpeg"
       fill_in "profile_name", with: "update_name"
       choose "女性"
@@ -458,22 +519,7 @@ RSpec.describe "Users", type: :system do
       fill_in "profile_prefecture", with: "北海道"
       fill_in "profile_municipality", with: "札幌市"
       click_button "更新"
-      expect(page).to have_content "プロファイル更新しました"
-    end
-
-    scenario "when icon is not fill, not created account" do
-      fill_in "profile_name", with: "update_name"
-      choose "女性"
-      fill_in "profile_date_of_birth", with: "2022/01/01"
-      fill_in "profile_prefecture", with: "北海道"
-      fill_in "profile_municipality", with: "札幌市"
-      click_button "更新"
-      expect(page).to have_content "プロファイル更新しました"
-    end
-
-    scenario "when you back click the link, the account will be displayed" do
-      click_link "戻る"
-      expect(page).to have_content "アカウント"
+      expect(page).to have_content "ゲストユーザーはプロファイルを編集できません"
     end
   end
 end
