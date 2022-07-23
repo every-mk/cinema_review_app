@@ -30,7 +30,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:errors_full_messages] = resource.profile.errors.full_messages.concat resource.errors.full_messages.concat
       clean_up_passwords resource
       set_minimum_password_length
-      respond_with resource
+
+      # リソースをViewで表示させるには失敗させる必要がある.
+      resource.valid?
+      respond_with resource, location: new_user_registration_path(resource)
     end
   end
 
@@ -58,7 +61,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  protected
+  # protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

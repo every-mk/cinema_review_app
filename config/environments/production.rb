@@ -53,7 +53,7 @@ Rails.application.configure do
   config.log_level = :info
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -118,7 +118,7 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.action_mailer.default_url_options = { host: ENV['APP_HOST']}
+  config.action_mailer.default_url_options = { host: ENV['APP_HOST'] }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -128,6 +128,6 @@ Rails.application.configure do
     domain: 'smtp.gmail.com',
     user_name: ENV['MAIL_USER_NAME'],
     password: ENV['MAIL_PASSWORD'],
-    authentication: 'login',
+    authentication: 'login'
   }
 end

@@ -1,0 +1,55 @@
+<div class="container-field user account">
+  <div class="row">
+    <div class="user-nav user-nav-pc">
+      <ul>
+        <li class="active">
+          <%= link_to "アカウント", users_account_path, data: {"turbolinks": false} %>
+        </li>
+        <li>
+          <%= link_to "プロファイル", profile_path, data: {"turbolinks": false} %>
+        </li>
+      </ul>
+    </div>
+    <div class="user-nav user-nav-mobile">
+      <ul>
+        <li class="active">
+          <%= link_to "アカウント", users_account_path, data: {"turbolinks": false} %>
+        </li>
+        <li>
+          <%= link_to "プロファイル", profile_path, data: {"turbolinks": false} %>
+        </li>
+      </ul>
+    </div>
+    <div class="user-view">
+      <div class="user-view-box">
+        <div class="update-content">
+          <div class="row">
+            <p>アカウント</p>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <%= label :user, :email, "メールアドレス" %>
+            <div><%= current_user.email %></div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <%= label :user, :password, "パスワード" %>
+            <div>*********</div>
+          </div>
+        </div>
+        <div class="update-content">
+          <% if current_user.email != ApplicationController::GUEST_EMAIL %>
+            <div class="row">
+              <%= link_to "編集", edit_user_registration_path, class: "btn btn-primary", data: {"turbolinks": false} %>
+            </div>
+          <% end %>
+          <div class="row">
+            <%= link_to "アカウント削除", users_path, class: "btn btn-primary", data: { method: :delete, confirm: "本当に削除しますか？" } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

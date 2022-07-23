@@ -1,18 +1,23 @@
 
-<% if user_signed_in?  %>
 <div class="container-fiuld user profile">
   <div class="row">
     <div class="user-nav user-nav-pc">
       <ul>
+        <li>
+          <%= link_to "アカウント", users_account_path, data: {"turbolinks": false} %>
+        </li>
         <li class="active">
-          <%= link_to "プロファイル", profile_path, data: {"turbolinks" => false} %>
+          <%= link_to "プロファイル", profile_path, data: {"turbolinks": false} %>
         </li>
       </ul>
     </div>
     <div class="user-nav user-nav-mobile">
       <ul>
+        <li>
+          <%= link_to "アカウント", users_account_path, data: {"turbolinks": false} %>
+        </li>
         <li class="active">
-          <%= link_to "プロファイル", profile_path, data: {"turbolinks" => false} %>
+          <%= link_to "プロファイル", profile_path, data: {"turbolinks": false} %>
         </li>
       </ul>
     </div>
@@ -48,9 +53,9 @@
           <div class="update-content">
             <div class="row">
               <%= f.label :sex, class: "required-a" %><br />
-              <%= f.label :man, class: "required-a" %>
+              <%= label :profile, :sex_man, "男性", class: "required-a" %>
               <%= f.radio_button :sex, :man, required: true, class: "form-control" %>
-              <%= f.label :woman, class: "required-a" %>
+              <%= label :profile, :sex_woman, "女性", class: "required-a" %>
               <%= f.radio_button :sex, :woman, required: true, class: "form-control" %>
             </div>
           </div>
@@ -78,8 +83,11 @@
             </div>
           </div>
         <% end %>
+
+        <div class="actions">
+          <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<% end %>

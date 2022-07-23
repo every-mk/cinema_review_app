@@ -7,7 +7,7 @@
 
         <div class="field">
           <div class="required"></div>
-          <%= f.label "名前" %><br />
+          <%= label :profile, :name, "名前" %><br />
           <% if resource.profile.presence %>
             <%= text_field :profile, :name, autofocus: true, autocomplete: "name", placeholder: "ユーザー名", class: "form-control", value: resource.profile.name %>
           <% else %>
@@ -17,30 +17,30 @@
 
         <div class="field">
           <div class="required"></div>
-          <%= f.label "性別" %><br />
+          <%= label :profile, :sex, "性別" %><br />
           <% if resource.profile.presence %>
             <% if resource.profile.sex == "man" %>
-              <%= f.label "男性" %>
+              <%= label :profile, :sex_man, "男性" %>
               <%= radio_button :profile, :sex, :man, checked: true, class: "form-control"%>
-              <%= f.label "女性" %>
+              <%= label :profile, :sex_woman, "女性" %>
               <%= radio_button :profile, :sex, :woman, class: "form-control"%>
             <% else %>
-              <%= f.label "男性" %>
+              <%= label :profile, :sex_man, "男性" %>
               <%= radio_button :profile, :sex, :man, class: "form-control"%>
-              <%= f.label "女性" %>
+              <%= label :profile, :sex_woman, "女性" %>
               <%= radio_button :profile, :sex, :woman, checked: true, class: "form-control"%>
             <% end %>
           <% else %>
-            <%= f.label "男性" %>
+            <%= label :profile, :sex_man, "男性" %>
             <%= radio_button :profile, :sex, :man, checked: true, class: "form-control" %>
-            <%= f.label "女性" %>
+            <%= label :profile, :sex_woman, "女性" %>
             <%= radio_button :profile, :sex, :woman, class: "form-control" %>
           <% end %>
         </div>
 
         <div class="field">
           <div class="required"></div>
-          <%= f.label "生年月日" %><br />
+          <%= label :profile, :date_of_birth, "生年月日" %><br />
           <% if resource.profile.presence %>
             <%= date_field :profile, :date_of_birth, autofocus: true, autocomplete: "date_of_birth", class: "form-control", value: resource.profile.date_of_birth %>
           <% else %>
@@ -50,7 +50,7 @@
 
         <div class="field">
           <div class="required"></div>
-          <%= f.label "都道府県" %><br />
+          <%= label :profile, :prefecture, "都道府県" %><br />
           <% if resource.profile.presence %>
             <%= text_field :profile, :prefecture, autofocus: true, autocomplete: "prefecture", placeholder: "都道府県", class: "form-control", value: resource.profile.prefecture %>
           <% else %>
@@ -60,7 +60,7 @@
 
         <div class="field">
           <div class="required"></div>
-          <%= f.label "市区町村" %><br />
+          <%= label :profile, :municipality, "市区町村" %><br />
           <% if resource.profile.presence %>
             <%= text_field :profile, :municipality, autofocus: true, autocomplete: "municipality", placeholder: "市区町村", class: "form-control", value: resource.profile.municipality %>
           <% else %>
@@ -70,7 +70,12 @@
 
         <div class="field">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control" %>
+          
+          <% if resource.profile.presence %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control", value: resource.email %>
+          <% else %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control" %>
+          <% end %>
         </div>
 
         <div class="field">
