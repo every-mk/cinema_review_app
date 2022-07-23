@@ -450,22 +450,6 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "戻る"
     end
 
-    # scenario "when all fill, updated" do
-    #   fill_in "user_email", with: "update_email@gmail.com"
-    #   fill_in "user_password", with: "update_password"
-    #   fill_in "user_password_confirmation", with: "update_password"
-    #   fill_in "user_current_password", with: user.password
-    #   click_button "更新"
-    #   expect(page).to have_content "アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。"
-    # end
-
-    # scenario "when password is not fill, not updated" do
-    #   fill_in "user_email", with: user.email
-    #   fill_in "user_current_password", with: user.password
-    #   click_button "更新"
-    #   expect(page).to have_content "アカウント情報を変更しました。"
-    # end
-
     scenario "when all fill, updated" do
       attach_file 'profile_image', "#{Rails.root}/spec/fixtures/profile/sample_icon.jpeg"
       fill_in "profile_name", with: "update_name"
