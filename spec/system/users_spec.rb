@@ -429,4 +429,67 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "アカウント"
     end
   end
+
+  describe "profile#show" do
+    before do
+      sign_in user
+      visit profile_path
+    end
+
+    it "when displayed, the content is displayed correctly" do
+      expect(page).to have_selector 'p', text: "プロファイル"
+      expect(page).to have_content "アイコン画像"
+      expect(page).to have_content "名前"
+      expect(page).to have_content "性別"
+      expect(page).to have_content "男性"
+      expect(page).to have_content "女性"
+      expect(page).to have_content "生年月日"
+      expect(page).to have_content "都道府県"
+      expect(page).to have_content "市区町村"
+      expect(page).to have_selector "input[value='更新']"
+      expect(page).to have_content "戻る"
+    end
+
+    # scenario "when all fill, updated" do
+    #   fill_in "user_email", with: "update_email@gmail.com"
+    #   fill_in "user_password", with: "update_password"
+    #   fill_in "user_password_confirmation", with: "update_password"
+    #   fill_in "user_current_password", with: user.password
+    #   click_button "更新"
+    #   expect(page).to have_content "アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。"
+    # end
+
+    # scenario "when password is not fill, not updated" do
+    #   fill_in "user_email", with: user.email
+    #   fill_in "user_current_password", with: user.password
+    #   click_button "更新"
+    #   expect(page).to have_content "アカウント情報を変更しました。"
+    # end
+
+    scenario "when all fill, updated" do
+      attach_file 'profile_image', "#{Rails.root}/spec/fixtures/profile/sample_icon.jpeg"
+      fill_in "profile_name", with: "update_name"
+      choose "女性"
+      fill_in "profile_date_of_birth", with: "2022/01/01"
+      fill_in "profile_prefecture", with: "北海道"
+      fill_in "profile_municipality", with: "札幌市"
+      click_button "更新"
+      expect(page).to have_content "プロファイル更新しました"
+    end
+
+    scenario "when icon is not fill, not created account" do
+      fill_in "profile_name", with: "update_name"
+      choose "女性"
+      fill_in "profile_date_of_birth", with: "2022/01/01"
+      fill_in "profile_prefecture", with: "北海道"
+      fill_in "profile_municipality", with: "札幌市"
+      click_button "更新"
+      expect(page).to have_content "プロファイル更新しました"
+    end
+
+    scenario "when you back click the link, the account will be displayed" do
+      click_link "戻る"
+      expect(page).to have_content "アカウント"
+    end
+  end
 end
