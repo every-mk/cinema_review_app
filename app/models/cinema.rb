@@ -3,7 +3,6 @@ class Cinema < ApplicationRecord
   validates :screen_time, presence: true
   validates :birthplace, presence: true, length: { maximum: 20 }
   validates :movie_rating, presence: true, length: { maximum: 10 }
-  
   validates :director, presence: true, length: { maximum: 50 }
   validates :original, presence: true, length: { maximum: 50 }
   validates :appearance, presence: true, length: { maximum: 1000 }

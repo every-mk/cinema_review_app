@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_23_134248) do
+ActiveRecord::Schema.define(version: 2022_07_23_152831) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(version: 2022_07_23_134248) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "celebrities", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name"
+    t.string "ruby"
+    t.date "date_of_birth"
+    t.string "birthplace"
+    t.string "history"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "cinemas", charset: "utf8mb3", force: :cascade do |t|

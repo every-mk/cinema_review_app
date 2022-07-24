@@ -76,7 +76,7 @@ RSpec.describe Profile, type: :model do
   end
 
   describe '#update' do
-    let!(:user) { create(:user, profile: profile) }
+    let(:user) { create(:user, profile: profile) }
     let(:profile) { build(:profile) }
 
     it "when have not change, it can be updated" do

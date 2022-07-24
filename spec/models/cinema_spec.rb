@@ -118,7 +118,7 @@ RSpec.describe Cinema, type: :model do
   end
 
   describe '#update' do
-    let!(:cinema) { create(:cinema) }
+    let(:cinema) { create(:cinema) }
     let!(:cinema1) { create(:cinema, title: "title_cinema1") }
 
     it "when have not change, it can be updated" do
