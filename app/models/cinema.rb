@@ -1,4 +1,6 @@
 class Cinema < ApplicationRecord
+  has_one_attached :image
+
   validates :title, presence: true, length: { maximum: 50 }, uniqueness: true
   validates :screen_time, presence: true
   validates :birthplace, presence: true, length: { maximum: 20 }

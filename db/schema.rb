@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2022_07_24_000614) do
 
   create_table "cinemas", charset: "utf8mb3", force: :cascade do |t|
     t.string "title"
-    t.datetime "screen_time"
+    t.time "screen_time"
     t.string "birthplace"
     t.string "movie_rating"
     t.string "director"

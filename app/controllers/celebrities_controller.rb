@@ -54,8 +54,4 @@ class CelebritiesController < ApplicationController
   def celebrity_params
     params.require(:celebrity).permit(:name, :ruby, :date_of_birth, :birthplace, :history, :image)
   end
-
-  # def create_default_celebrity_image
-  #   @celebrity.image.attach()
-  # end
 end
