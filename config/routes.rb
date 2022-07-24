@@ -4,15 +4,11 @@ Rails.application.routes.draw do
   get 'users/account',       to: 'users#account'
   resource :users, only: [:destroy]
 
-  scope '/admins' do
-    resources :celebrities, only: [:new, :create, :edit, :update, :destroy]
-  end
-
   scope '/users' do
     resource :profile, only: [:show, :update]
   end
 
-  resource :celebrity, only: [:show]
+  resources :celebrities, only: [:new, :create, :show, :edit, :update, :destroy]
 
   resources :admins, only: [:index]
   devise_for :admins, controllers: { registrations: 'admins/registrations', sessions: 'admins/sessions' }

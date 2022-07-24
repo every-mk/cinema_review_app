@@ -1,2 +1,22 @@
-<h1>Celebrities#show</h1>
-<p>Find me in app/views/celebrities/show.html.erb</p>
+
+<div class="container-fiuld celebrity celebrity-show">
+  <div class="row">
+    <div class="celebrity-show-view">
+      <div class="celebrity-show-view-box">
+        <div class="create-content">
+          <div class="row">
+            <p class="celebrity-ruby"><%= @celebrity.ruby %></p>
+            <p class="celebrity-name"><%= @celebrity.name %></p>
+            <p class="celebrity-date-of-birth"><%= @celebrity.date_of_birth %></p>
+            <p class="celebrity-birthplace"><%= @celebrity.birthplace %></p>
+            <p class="celebrity-history"><%= @celebrity.history %></p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

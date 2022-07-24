@@ -15,6 +15,7 @@ RSpec.describe "Celebrity", type: :system do
     profile1.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'profile', 'default_icon.jpeg')), filename: 'default_icon.jpeg', content_type: 'image/jpeg')
     user.confirm
     guest_user.confirm
+    celebrity.image.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'celebrity', 'sample_icon.jpeg')), filename: 'default_icon.jpeg', content_type: 'image/jpeg')
   end
 
   describe "celebrity#new" do
@@ -193,6 +194,28 @@ RSpec.describe "Celebrity", type: :system do
         expect(page).to have_content "ゲストユーザーは削除権限がありません"
         expect(Celebrity.exists?(id: celebrity.id)).to be true
       end
+    end
+  end
+
+  describe "celebrity#show" do
+    before do
+      sign_in user
+      visit root_path
+      visit celebrity_path(celebrity)
+    end
+
+    it "when displayed, the content is displayed correctly" do
+      expect(page).to have_content celebrity.name
+      expect(page).to have_content celebrity.ruby
+      expect(page).to have_content celebrity.date_of_birth
+      expect(page).to have_content celebrity.birthplace
+      expect(page).to have_content celebrity.history
+      expect(page).to have_content "戻る"
+    end
+
+    scenario "when you back click the link, the account will be displayed", js: true do
+      click_link "戻る"
+      expect(page).to have_content "著名人 詳細"
     end
   end
 end
