@@ -10,3 +10,10 @@ ja:
         prefecture: 都道府県
         municipality: 市区町村
         image: アイコン画像
+      celebrity:
+        name: 名前
+        ruby: ふりがな
+        date_of_birth: 生年月日
+        birthplace: 出身地
+        history: 歴史
+        image: 著名人画像
