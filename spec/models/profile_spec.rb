@@ -19,11 +19,6 @@ RSpec.describe Profile, type: :model do
       expect(user.profile).to be_valid
     end
 
-    it "when name more digits, it registration is not possible" do
-      profile.name = '123456789ABCDEFGHIJKLMNOPQRSTUV'
-      expect(user.profile).not_to be_valid
-    end
-
     it "when sex is nil, it registration is not possible" do
       profile.sex = nil
       expect(user.profile).not_to be_valid
@@ -54,11 +49,6 @@ RSpec.describe Profile, type: :model do
       expect(user.profile).to be_valid
     end
 
-    it "when prefecture more digits, it registration is not possible" do
-      profile.prefecture = '123456789AB'
-      expect(user.profile).not_to be_valid
-    end
-
     it "when municipality is nil, it registration is not possible" do
       profile.municipality = nil
       expect(user.profile).not_to be_valid
@@ -67,11 +57,6 @@ RSpec.describe Profile, type: :model do
     it "when municipality is present, it registration is possible" do
       profile.municipality = '那覇市'
       expect(user.profile).to be_valid
-    end
-
-    it "when municipality more digits, it registration is not possible" do
-      profile.municipality = '123456789AB'
-      expect(user.profile).not_to be_valid
     end
   end
 
@@ -91,11 +76,6 @@ RSpec.describe Profile, type: :model do
     it "when name is present, it can be updated" do
       profile.name = 'ユーザー'
       expect(user.profile).to be_valid
-    end
-
-    it "when name more digits, it can be not updated" do
-      profile.name = '123456789ABCDEFGHIJKLMNOPQRSTUV'
-      expect(user.profile).not_to be_valid
     end
 
     it "when sex is nil, iit can be not updated" do
@@ -128,11 +108,6 @@ RSpec.describe Profile, type: :model do
       expect(user.profile).to be_valid
     end
 
-    it "when prefecture more digits, it can be not updated" do
-      profile.prefecture = '123456789AB'
-      expect(user.profile).not_to be_valid
-    end
-
     it "when municipality is nil, it can be not updated" do
       profile.municipality = nil
       expect(user.profile).not_to be_valid
@@ -141,11 +116,6 @@ RSpec.describe Profile, type: :model do
     it "when municipality is present, it can be updated" do
       profile.municipality = '那覇市'
       expect(user.profile).to be_valid
-    end
-
-    it "when municipality more digits, it can be not updated" do
-      profile.municipality = '123456789AB'
-      expect(user.profile).not_to be_valid
     end
   end
 

@@ -1,11 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Celebrity, type: :model do
-  STRING_LEN_21 = "123456789012345678901"
-  STRING_LEN_1001 = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901"
-
   describe '#create' do
-    let!(:celebrity) { create(:celebrity) }
     let(:new_celebrity) { build(:celebrity) }
 
     it "when celebrity registration, it registration is possible" do
@@ -17,18 +13,8 @@ RSpec.describe Celebrity, type: :model do
       expect(new_celebrity).not_to be_valid
     end
 
-    it "when name more digits, it registration is not possible" do
-      new_celebrity.name = STRING_LEN_21
-      expect(new_celebrity).not_to be_valid
-    end
-
     it "when ruby is nil, it registration is not possible" do
       new_celebrity.ruby = nil
-      expect(new_celebrity).not_to be_valid
-    end
-
-    it "when ruby more digits, it registration is not possible" do
-      new_celebrity.ruby = STRING_LEN_21
       expect(new_celebrity).not_to be_valid
     end
 
@@ -42,18 +28,8 @@ RSpec.describe Celebrity, type: :model do
       expect(new_celebrity).not_to be_valid
     end
 
-    it "when birthplace more digits, it registration is not possible" do
-      new_celebrity.birthplace = STRING_LEN_21
-      expect(new_celebrity).not_to be_valid
-    end
-
     it "when history is nil, it registration is not possible" do
       new_celebrity.history = nil
-      expect(new_celebrity).not_to be_valid
-    end
-
-    it "when history more digits, it registration is not possible" do
-      new_celebrity.history = STRING_LEN_1001
       expect(new_celebrity).not_to be_valid
     end
   end
@@ -70,18 +46,8 @@ RSpec.describe Celebrity, type: :model do
       expect(celebrity).not_to be_valid
     end
 
-    it "when name more digits, it can be not updated" do
-      celebrity.name = STRING_LEN_21
-      expect(celebrity).not_to be_valid
-    end
-
     it "when ruby is nil, it can be not updated" do
       celebrity.ruby = nil
-      expect(celebrity).not_to be_valid
-    end
-
-    it "when ruby more digits, it can be not updated" do
-      celebrity.ruby = STRING_LEN_21
       expect(celebrity).not_to be_valid
     end
 
@@ -95,18 +61,8 @@ RSpec.describe Celebrity, type: :model do
       expect(celebrity).not_to be_valid
     end
 
-    it "when birthplace more digits, it can be not updated" do
-      celebrity.birthplace = STRING_LEN_21
-      expect(celebrity).not_to be_valid
-    end
-
     it "when history is nil, it can be not updated" do
       celebrity.history = nil
-      expect(celebrity).not_to be_valid
-    end
-
-    it "when history more digits, it can be not updated" do
-      celebrity.history = STRING_LEN_1001
       expect(celebrity).not_to be_valid
     end
   end
