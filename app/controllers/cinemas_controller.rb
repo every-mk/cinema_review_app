@@ -24,6 +24,13 @@ class CinemasController < ApplicationController
   end
 
   def update
+    if @cinema.update(cinema_params)
+      flash[:notice] = "映画を更新しました"
+      redirect_to admins_path
+    else
+      flash[:errors_full_messages] = @cinema.errors.full_messages
+      render "edit"
+    end
   end
 
   def show

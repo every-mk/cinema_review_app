@@ -101,7 +101,7 @@ RSpec.describe "Celebrity", type: :system do
       expect(page).to have_content "歴史を入力してください"
     end
 
-    scenario "when you back click the link, the account will be displayed", js: true do
+    scenario "when you back click the link, will be displayed", js: true do
       click_link "戻る"
       expect(page).to have_content "著名人 新規作成"
     end
