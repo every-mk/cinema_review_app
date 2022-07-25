@@ -37,6 +37,15 @@ class CinemasController < ApplicationController
   end
 
   def destroy
+    if current_admin.email == GUEST_EMAIL
+      flash[:alert] = "ゲストユーザーは削除権限がありません"
+      render "edit"
+    elsif @cinema.destroy
+      flash[:notice] = "映画を削除しました"
+      redirect_to admins_path
+    else
+      render "edit"
+    end
   end
 
   private
