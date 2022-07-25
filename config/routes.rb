@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   end
 
   resources :celebrities, only: [:new, :create, :show, :edit, :update, :destroy]
-  resources :cinemas, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  resources :cinemas, only: [:new, :create, :show, :edit, :update, :destroy]
 
   resources :admins, only: [:index]
   devise_for :admins, controllers: { registrations: 'admins/registrations', sessions: 'admins/sessions' }
   devise_for :users, controllers: { registrations: 'users/registrations' }
-  root 'users#index'
+  root 'cinemas#index'
 end

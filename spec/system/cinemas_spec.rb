@@ -381,4 +381,33 @@ RSpec.describe "Cinema", type: :system do
       end
     end
   end
+
+  describe "cinema#show" do
+    before do
+      sign_in user
+      visit root_path
+      visit cinema_path(cinema)
+    end
+
+    it "when displayed, the content is displayed correctly" do
+      expect(page).to have_content cinema.title
+      expect(page).to have_content cinema.screen_time
+      expect(page).to have_content cinema.birthplace
+      expect(page).to have_content cinema.birthplace
+      expect(page).to have_content cinema.movie_rating
+      expect(page).to have_content cinema.director
+      expect(page).to have_content cinema.original
+      expect(page).to have_content cinema.appearance
+      expect(page).to have_content cinema.screenwriter
+      expect(page).to have_content cinema.distribution
+      expect(page).to have_content cinema.start_date
+      expect(page).to have_content cinema.story
+      expect(page).to have_content "戻る"
+    end
+
+    scenario "when you back click the link, the will be displayed", js: true do
+      click_link "戻る"
+      expect(page).to have_content "映画 詳細"
+    end
+  end
 end

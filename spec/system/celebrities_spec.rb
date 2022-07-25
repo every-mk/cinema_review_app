@@ -213,7 +213,7 @@ RSpec.describe "Celebrity", type: :system do
       expect(page).to have_content "戻る"
     end
 
-    scenario "when you back click the link, the account will be displayed", js: true do
+    scenario "when you back click the link, the will be displayed", js: true do
       click_link "戻る"
       expect(page).to have_content "著名人 詳細"
     end
