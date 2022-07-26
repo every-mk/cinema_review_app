@@ -1,0 +1,35 @@
+
+<div class="container-fiuld cinema cinema-show">
+  <div class="row">
+    <div class="cinema-show-view">
+      <div class="cinema-show-view-box">
+        <div class="create-content">
+          <div class="row">
+            <div class="offset">
+              <div class="icon-box">
+                <%= image_tag @cinema.image, alt: "映画画像", class: "icon-image host-icon" %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <p class="cinema-title"><%= @cinema.title %></p>
+            <p class="cinema-screen-time"><%= @cinema.screen_time %></p>
+            <p class="cinema-birthplace"><%= @cinema.birthplace %></p>
+            <p class="cinema-movie-rating"><%= @cinema.movie_rating %></p>
+            <p class="cinema-director"><%= @cinema.director %></p>
+            <p class="cinema-original"><%= @cinema.original %></p>
+            <p class="cinema-appearance"><%= @cinema.appearance %></p>
+            <p class="cinema-screenwriter"><%= @cinema.screenwriter %></p>
+            <p class="cinema-distribution"><%= @cinema.distribution %></p>
+            <p class="cinema-start-date"><%= @cinema.start_date %></p>
+            <p class="cinema-story"><%= @cinema.story %></p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

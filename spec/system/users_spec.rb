@@ -9,8 +9,8 @@ RSpec.describe "Users", type: :system do
   let(:profile2) { build(:profile) }
 
   before do
-    profile.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'profile', 'default_icon.jpeg')), filename: 'default_icon.jpeg', content_type: 'image/jpeg')
-    profile2.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'profile', 'default_icon.jpeg')), filename: 'default_icon.jpeg', content_type: 'image/jpeg')
+    profile.image.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'profile', 'sample_icon.jpeg')), filename: 'default_icon.jpeg', content_type: 'image/jpeg')
+    profile2.image.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'profile', 'sample_icon.jpeg')), filename: 'default_icon.jpeg', content_type: 'image/jpeg')
     user.confirm
     guest_user.confirm
   end

@@ -2,10 +2,6 @@ class UsersController < ApplicationController
   # before_action :authenticate_user!
   before_action :authenticate_user!, only: [:account]
 
-  # ToDo: cinema#indexの代替アクション
-  def index
-  end
-
   def destroy
     if current_user.email == GUEST_EMAIL
       flash[:alert] = "ゲストユーザーは削除できません"

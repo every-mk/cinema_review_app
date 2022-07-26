@@ -10,3 +10,23 @@ ja:
         prefecture: 都道府県
         municipality: 市区町村
         image: アイコン画像
+      celebrity:
+        name: 名前
+        ruby: ふりがな
+        date_of_birth: 生年月日
+        birthplace: 出身地
+        history: 歴史
+        image: 著名人画像
+      cinema:
+        title: タイトル
+        screen_time: 上映時間
+        birthplace: 制作国
+        movie_rating: 映画観客指定
+        director: 監督
+        original: 原作
+        appearance: 出演
+        screenwriter: 映画脚本家
+        distribution: 配給
+        start_date: 上映開始日
+        story: ストーリー
+        image: 映画画像

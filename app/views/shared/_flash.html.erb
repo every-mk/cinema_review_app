@@ -7,7 +7,7 @@
 <% if flash[:alert] %>
   <p class="alert flash_alert"><%= flash[:alert] %></p>
 <% end %>
-<% if flash[:errors_full_messages] and user_signed_in? %>
+<% if flash[:errors_full_messages] and (admin_signed_in? or user_signed_in?) %>
   <ul class="flash flash_errors">
     <% flash[:errors_full_messages].each do |message| %>
       <li><%= message %></li>

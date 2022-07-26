@@ -1,0 +1,111 @@
+
+<div class="container-fiuld cinema cinema-edit">
+  <div class="row">
+    <div class="cinema-edit-view">
+      <div class="cinema-edit-view-box">
+        <div class="create-content">
+          <div class="row">
+            <p>映画編集</p>
+          </div>
+        </div>
+        <%= form_with model: @cinema do |f| %>
+          <div class="create-content">
+            <div class="row">
+              <div class="offset">
+                <div class="icon-box">
+                  <% if @cinema.image.present? %>
+                    <%= image_tag @cinema.image, alt: "映画画像", class: "icon-image host-icon" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :image, class: "required-a" %>
+              <%= f.file_field :image, required: false, required: false, class: "input-w" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :title, class: "required-a" %>
+              <%= f.text_field :title, placeholder: "タイトル", autocomplete: "title", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :screen_time, class: "required-a" %><br />
+              <%= f.time_field :screen_time, autofocus: true, autocomplete: "screen_time", required: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :birthplace, class: "required-a" %>
+              <%= f.text_field :birthplace, placeholder: "制作国", autocomplete: "birthplace", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :movie_rating, class: "required-a" %>
+              <%= f.text_field :movie_rating, placeholder: "映画観客指定", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :director, class: "required-a" %>
+              <%= f.text_field :director, placeholder: "監督", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :original, class: "required-a" %>
+              <%= f.text_field :original, placeholder: "原作", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :appearance, class: "required-a" %>
+              <%= f.text_field :appearance, placeholder: "出演", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :screenwriter, class: "required-a" %>
+              <%= f.text_field :screenwriter, placeholder: "映画脚本家", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :distribution, class: "required-a" %>
+              <%= f.text_field :distribution, placeholder: "配給", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :start_date, class: "required-a" %><br />
+              <%= f.date_field :start_date, autofocus: true, autocomplete: "screen_time", required: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :story, class: "required-a" %>
+              <%= f.text_field :story, placeholder: "ストーリー", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.submit "更新", class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="actions">
+            <%= link_to "削除", cinema_path, class: "btn btn-primary", data: { method: :delete, confirm: "本当に削除しますか？" } %>
+          </div>
+        <div class="actions">
+          <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
