@@ -31,6 +31,7 @@ ja:
         story: ストーリー
         image: 映画画像
       review:
+        want_to_see: 観たい
         recommendation: おすすめ
         after_watch: 鑑賞後
         after_watch_want_to_see_again: また観たい
