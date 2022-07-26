@@ -91,11 +91,12 @@ ActiveRecord::Schema.define(version: 2022_07_24_000614) do
   end
 
   create_table "reviews", charset: "utf8mb3", force: :cascade do |t|
-    t.boolean "want_to_see"
     t.boolean "recommendation"
     t.integer "after_watch"
     t.boolean "spoiler"
     t.string "content"
+    t.integer "user_id", null: false
+    t.integer "cinema_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -30,3 +30,11 @@ ja:
         start_date: 上映開始日
         story: ストーリー
         image: 映画画像
+      review:
+        recommendation: おすすめ
+        after_watch: 鑑賞後
+        after_watch_want_to_see_again: また観たい
+        after_watch_want_to_see_when_forget: 忘れた頃に観たい
+        after_watch_do_not_want_to_see: もう観たくない
+        spoiler: ネタバレ
+        content: 評価内容

@@ -37,7 +37,7 @@ RSpec.describe "Celebrity", type: :system do
       expect(page).to have_content "戻る"
     end
 
-    scenario "when all fill, created account" do
+    scenario "when all fill, created" do
       attach_file 'celebrity_image', "#{Rails.root}/spec/fixtures/celebrity/sample_icon.jpeg"
       fill_in "celebrity_name", with: build_celebrity.name
       fill_in "celebrity_ruby", with: build_celebrity.ruby

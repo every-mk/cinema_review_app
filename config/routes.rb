@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :celebrities, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :cinemas, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :reviews, only: [:new, :create, :edit, :update]
 
   resources :admins, only: [:index]
   devise_for :admins, controllers: { registrations: 'admins/registrations', sessions: 'admins/sessions' }

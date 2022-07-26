@@ -34,6 +34,7 @@ class CinemasController < ApplicationController
   end
 
   def show
+    # @review = Review.find_or_initialize_by(user_id: current_user.id, cinema_id: @cinema.id)
   end
 
   def destroy
