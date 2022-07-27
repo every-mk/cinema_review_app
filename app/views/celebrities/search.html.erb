@@ -1,8 +1,15 @@
 <div class="celebrity-search">
   <% @celebrities.each do |celebrity| %>
-    <%= link_to celebrity_path(celebrity), data: {"turbolinks": false} do %>
-      <%= image_tag celebrity.image, alt: "著名人画像", class: "celebrity-image" %>
-      <p><%= celebrity.name %></p>
+    <% if admin_signed_in? %>
+      <%= link_to edit_celebrity_path(celebrity), data: {"turbolinks": false} do %>
+        <%= image_tag celebrity.image, alt: "著名人画像", class: "celebrity-image" %>
+        <p><%= celebrity.name %></p>
+      <% end %>
+    <% else %>
+      <%= link_to celebrity_path(celebrity), data: {"turbolinks": false} do %>
+        <%= image_tag celebrity.image, alt: "著名人画像", class: "celebrity-image" %>
+        <p><%= celebrity.name %></p>
+      <% end %>
     <% end %>
   <% end %>
   <div class="actions">
