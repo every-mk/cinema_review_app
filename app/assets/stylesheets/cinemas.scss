@@ -6,17 +6,17 @@
 }
 
 .cinema-search {
-  .cinema-image {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-  }
-
   a {
     display: inline-block;
     margin-top: 20px;
     margin-left: 20px;
   }
+}
+
+.cinema-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
 }
 
 .cinema {
@@ -41,7 +41,7 @@
   }
 
   .create-content {
-    margin-bottom: 10px;
+    margin-top: 10px;
 
     p {
       margin-left: 10px;
