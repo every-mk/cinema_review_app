@@ -1,0 +1,106 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+body, header, footer, div, img, input, i, a, h2, ul, p, form, h1, h4, h5, h6
+ {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul, li {
+  list-style: none;
+}
+
+label {
+  font-size: 18px;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+body {
+  position: relative;
+  padding-bottom: 180px;
+  min-height: 100vh;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+.form-control:focus {
+  background-color: white;
+  border-color: #5097e4;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25)
+}
+
+.btn-primary {
+  padding: 2px 10px;
+  background-color: rgb(61, 132, 255);
+  border-color: rgb(61, 132, 255);
+  color: white;
+}
+
+[type=submit]:not(disabled) {
+  cursor: pointer;
+}
+
+.flash_notice {
+  background-color: lightBlue;
+}
+
+.flash_notice_green {
+  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 18px;
+  color: green;
+}
+
+.alert {
+  margin-bottom: 16px;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.flash_alert {
+  background-color: #f35500;
+  text-align: center;
+  font-size: 13px;
+  color: white;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  input {
+    font-size: 16px;
+  }
+  
+  [type=date] {
+    font-size: 14px;
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 5px;
+  }
+}

@@ -21,8 +21,6 @@ RSpec.describe "Users", type: :system do
     end
 
     it "when displayed, the header is displayed correctly" do
-      expect(page).to have_selector "img[alt=サイトのロゴ画像]"
-      # ToDo: サイトのログ画像URLを追加する.
       expect(page).to have_content "ログイン"
       expect(page).to have_content "登録する"
     end
