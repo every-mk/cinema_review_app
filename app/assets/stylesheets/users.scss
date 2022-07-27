@@ -24,3 +24,26 @@
     margin-left: 0;
   }
 }
+
+.account {
+  .user-nav {
+    margin: 20px 0;
+
+    li {
+      display: inline;
+    }
+
+    .active a {
+      font-size: 18px;
+      color: rgb(61, 132, 255);
+    }
+  }
+
+  .show-content {
+    margin-bottom: 10px;
+
+    .show-information {
+      margin-left: 10px;
+    }
+  }
+}
