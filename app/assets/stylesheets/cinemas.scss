@@ -18,3 +18,29 @@
     margin-left: 20px;
   }
 }
+
+.cinema {
+  h1 {
+    margin: 10px 0;
+  }
+
+  .cinema-inner {
+    margin-left: 10px;
+  }
+
+  form {
+    margin-bottom: 20px;
+  }
+
+  input {
+    margin-left: 20px;
+  }
+
+  [type=submit]:not(disabled) {
+    margin-left: 0;
+  }
+
+  .create-content {
+    margin-bottom: 10px;
+  }
+}

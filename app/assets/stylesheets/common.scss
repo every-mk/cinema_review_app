@@ -91,11 +91,11 @@ body {
     font-size: 16px;
   }
 
-  [type=text], [type=email], [type=password], [type=date] {
+  [type=text], [type=email], [type=password], [type=date], [type=time] {
     width: 250px;
   }
   
-  [type=date] {
+  [type=date], [type=time] {
     font-size: 14px;
   }
 
