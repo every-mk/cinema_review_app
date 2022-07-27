@@ -1,3 +1,8 @@
+<div class="cinema-search">
 <% @cinemas.each do |cinema| %>
-  <%= link_to cinema.title, cinema_path(cinema), data: {"turbolinks": false} %><br />
+  <%= link_to cinema_path(cinema), data: {"turbolinks": false} do %>
+    <%= image_tag cinema.image, alt: "映画画像", class: "cinema-image" %>
+    <p><%= cinema.title %></p>
+  <% end %>
 <% end %>
+</div>
