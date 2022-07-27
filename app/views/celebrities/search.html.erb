@@ -1,3 +1,8 @@
-<% @celebrities.each do |celebrity| %>
-  <%= link_to celebrity.name, celebrity_path(celebrity), data: {"turbolinks": false} %><br />
-<% end %>
+<div class="celebrity-search">
+  <% @celebrities.each do |celebrity| %>
+    <%= link_to celebrity_path(celebrity), data: {"turbolinks": false} do %>
+      <%= image_tag celebrity.image, alt: "著名人画像", class: "celebrity-image" %>
+      <p><%= celebrity.name %></p>
+    <% end %>
+  <% end %>
+</div>
