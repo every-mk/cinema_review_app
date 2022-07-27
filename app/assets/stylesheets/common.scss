@@ -87,8 +87,13 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 
-  input {
+  input, textarea {
     font-size: 16px;
+  }
+
+  textarea {
+    height: 200px;
+    width: 500px;
   }
 
   [type=text], [type=email], [type=password], [type=date], [type=time] {
