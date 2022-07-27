@@ -53,6 +53,10 @@ class CinemasController < ApplicationController
     end
   end
 
+  def search
+    @cinemas = Cinema.where("title LIKE ?", "#{params[:title]}%").limit(10)
+  end
+
   private
 
   def set_cinema

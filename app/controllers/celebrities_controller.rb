@@ -45,6 +45,10 @@ class CelebritiesController < ApplicationController
     end
   end
 
+  def search
+    @celebrities = Celebrity.where("name LIKE ?", "#{params[:name]}%").limit(10)
+  end
+
   private
 
   def set_celebrity

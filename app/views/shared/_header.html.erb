@@ -1,6 +1,7 @@
 <header>
   <div class="header-left-nav">
     <%= link_to image_tag("", alt: "サイトのロゴ画像"), root_path, data: {"turbolinks": false} %>
+    <%= render "shared/search" %>
   </div>
   <div class="header-right-nav">
     <% if admin_signed_in? %>
