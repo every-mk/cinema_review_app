@@ -29,7 +29,7 @@
         <div class="actions">
           <% if @review.present? %>
             <%= link_to "レビューを編集する", edit_review_path(@review) , data: {"turbolinks": false} %>
-          <% else %>
+          <% elsif current_user.present? %>
             <%= link_to "レビューを書く", new_review_path(cinema_id: @cinema.id), data: {"turbolinks": false} %>
           <% end %>
         </div>
