@@ -1,6 +1,6 @@
 <div class="container user-password-new">
   <div class="user-frame">
-    <p>パスワードを忘れた場合</p>
+    <h1>パスワードを忘れた場合</h1>
     <div class="user-inner">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
