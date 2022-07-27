@@ -1,0 +1,3 @@
+<% @cinemas.each do |cinema| %>
+  <%= link_to cinema.title, cinema_path(cinema), data: {"turbolinks": false} %><br />
+<% end %>

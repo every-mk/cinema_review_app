@@ -34,7 +34,7 @@ class CinemasController < ApplicationController
   end
 
   def show
-    if current_user.review.exists?(cinema_id: @cinema.id)
+    if current_user.present? && current_user.review.exists?(cinema_id: @cinema.id)
       @review = Review.find_by(user_id: current_user.id, cinema_id: @cinema.id)
     else
       @review = nil
@@ -51,6 +51,10 @@ class CinemasController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def search
+    @cinemas = Cinema.where("title LIKE ?", "#{params[:title]}%").limit(10)
   end
 
   private

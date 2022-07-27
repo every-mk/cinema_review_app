@@ -1,0 +1,10 @@
+<%= form_with url: cinemas_search_path, method: :get do |f| %>
+  <div class="header-search">
+    <%= f.text_field :title, placeholder: "映画タイトル", class: "form-control" %>
+  </div>
+<% end %>
+<%= form_with url: celebrities_search_path, method: :get do |f| %>
+  <div class="header-search">
+  <%= f.text_field :name, placeholder: "有名人", class: "form-control" %>
+  </div>
+<% end %>

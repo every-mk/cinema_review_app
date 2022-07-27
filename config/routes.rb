@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'admins/guest_sign_in', to: 'admins#guest_sign_in'
-  get 'users/guest_sign_in', to: 'users#guest_sign_in'
-  get 'users/account',       to: 'users#account'
+  get 'users/guest_sign_in',  to: 'users#guest_sign_in'
+  get 'users/account',        to: 'users#account'
+  get 'celebrities/search',   to: 'celebrities#search'
+  get 'cinemas/search',       to: 'cinemas#search'
   resource :users, only: [:destroy]
 
   scope '/users' do

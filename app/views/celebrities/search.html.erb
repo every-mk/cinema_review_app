@@ -1,0 +1,3 @@
+<% @celebrities.each do |celebrity| %>
+  <%= link_to celebrity.name, celebrity_path(celebrity), data: {"turbolinks": false} %><br />
+<% end %>
