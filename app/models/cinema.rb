@@ -1,4 +1,5 @@
 class Cinema < ApplicationRecord
+  has_one :review, dependent: :destroy
   has_one_attached :image
 
   validates :title, presence: true, length: { maximum: 50 }, uniqueness: true

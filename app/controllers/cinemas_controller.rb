@@ -34,6 +34,11 @@ class CinemasController < ApplicationController
   end
 
   def show
+    if current_user.review.exists?(cinema_id: @cinema.id)
+      @review = Review.find_by(user_id: current_user.id, cinema_id: @cinema.id)
+    else
+      @review = nil
+    end
   end
 
   def destroy

@@ -27,6 +27,13 @@
         </div>
 
         <div class="actions">
+          <% if @review.present? %>
+            <%= link_to "レビューを編集する", edit_review_path(@review) , data: {"turbolinks": false} %>
+          <% else %>
+            <%= link_to "レビューを書く", new_review_path(cinema_id: @cinema.id), data: {"turbolinks": false} %>
+          <% end %>
+        </div>
+        <div class="actions">
           <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
         </div>
       </div>

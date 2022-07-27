@@ -2,15 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Review, type: :model do
   describe '#create' do
-    let(:review) { build(:review) }
+    let(:user) { create(:user) }
+    let(:cinema) { create(:cinema) }
+    let(:review) { build(:review, user: user, cinema: cinema) }
 
     it "when review registration, it registration is possible" do
       expect(review).to be_valid
-    end
-
-    it "when want to see is nil, it registration is not possible" do
-      review.want_to_see = nil
-      expect(review).not_to be_valid
     end
 
     it "when recommendation is nil, it registration is not possible" do
@@ -40,15 +37,12 @@ RSpec.describe Review, type: :model do
   end
 
   describe '#update' do
-    let(:review) { create(:review) }
+    let(:user) { create(:user) }
+    let(:cinema) { create(:cinema) }
+    let(:review) { create(:review, user: user, cinema: cinema) }
 
     it "when have not change, it can be updated" do
       expect(review).to be_valid
-    end
-
-    it "when want to see is nil, it can be not updated" do
-      review.want_to_see = nil
-      expect(review).not_to be_valid
     end
 
     it "when recommendation is nil, it can be not updated" do
@@ -78,7 +72,9 @@ RSpec.describe Review, type: :model do
   end
 
   describe '#destroy' do
-    let(:review) { create(:review) }
+    let(:user) { create(:user) }
+    let(:cinema) { create(:cinema) }
+    let(:review) { create(:review, user: user, cinema: cinema) }
 
     it "when review destory, deleted" do
       review.destroy
