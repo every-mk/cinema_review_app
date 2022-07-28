@@ -1,6 +1,6 @@
 <div class="container user-registration-new">
   <div class="user-frame">
-    <h1>新しいアカウントを作成</h1>
+    <p>新しいアカウントを作成<p>
     <div class="user-inner">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "users/shared/error_messages", resource: resource %>
@@ -18,27 +18,24 @@
         <div class="field">
           <div class="required"></div>
           <%= label :profile, :sex, "性別" %><br />
-          <div class="child-radio-button">
-            <% if resource.profile.presence %>
-              <% if resource.profile.sex == "man" %>
-                  <%= label :profile, :sex_man, "男性" %>
-                  <%= radio_button :profile, :sex, :man, checked: true, class: "form-control"%>
-                  <%= label :profile, :sex_woman, "女性" %>
-                  <%= radio_button :profile, :sex, :woman, class: "form-control"%>
-                </div>
-              <% else %>
-                <%= label :profile, :sex_man, "男性" %>
-                <%= radio_button :profile, :sex, :man, class: "form-control"%>
-                <%= label :profile, :sex_woman, "女性" %>
-                <%= radio_button :profile, :sex, :woman, checked: true, class: "form-control"%>
-              <% end %>
+          <% if resource.profile.presence %>
+            <% if resource.profile.sex == "man" %>
+              <%= label :profile, :sex_man, "男性" %>
+              <%= radio_button :profile, :sex, :man, checked: true, class: "form-control"%>
+              <%= label :profile, :sex_woman, "女性" %>
+              <%= radio_button :profile, :sex, :woman, class: "form-control"%>
             <% else %>
               <%= label :profile, :sex_man, "男性" %>
-              <%= radio_button :profile, :sex, :man, checked: true, class: "form-control" %>
+              <%= radio_button :profile, :sex, :man, class: "form-control"%>
               <%= label :profile, :sex_woman, "女性" %>
-              <%= radio_button :profile, :sex, :woman, class: "form-control" %>
+              <%= radio_button :profile, :sex, :woman, checked: true, class: "form-control"%>
             <% end %>
-          </div>
+          <% else %>
+            <%= label :profile, :sex_man, "男性" %>
+            <%= radio_button :profile, :sex, :man, checked: true, class: "form-control" %>
+            <%= label :profile, :sex_woman, "女性" %>
+            <%= radio_button :profile, :sex, :woman, class: "form-control" %>
+          <% end %>
         </div>
 
         <div class="field">
@@ -82,7 +79,7 @@
         </div>
 
         <div class="field">
-          <%= f.label :password %><br />
+          <%= f.label :password %>
           <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "form-control" %>
         </div>
 
