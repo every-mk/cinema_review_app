@@ -54,6 +54,24 @@
         </div>
       </div>
 
+      <div class="reviews-content">
+        <p>レビュー</p>
+        <div class="review-choice">
+          <p class="use-border"><%= @recommendation_count %> おすすめ</p>
+          <p class="use-border"><%= @after_watch_want_to_see_again %> また観たい</p>
+          <p class="use-border"><%= @after_watch_want_to_see_when_forget %> 忘れた頃に観たい</p>
+          <p class="use-border"><%= @after_watch_do_not_want_to_see %> もう観たくない</p>
+        </div>
+        <div class="review-contents">
+          <p >レビュー内容</p>
+          <% @reviews.each do |review| %>
+            <div class="review-content">
+              <p><%= review.content %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
       <div class="actions use-border">
         <% if @review.present? %>
           <%= link_to "レビューを編集する", edit_review_path(@review) , data: {"turbolinks": false} %>

@@ -34,6 +34,12 @@ class CinemasController < ApplicationController
   end
 
   def show
+    @reviews = Review.where(cinema_id: @cinema)
+    @recommendation_count = @reviews.where(recommendation: true).count
+    @after_watch_want_to_see_again = @reviews.where(after_watch: 0).count
+    @after_watch_want_to_see_when_forget = @reviews.where(after_watch: 1).count
+    @after_watch_do_not_want_to_see = @reviews.where(after_watch: 2).count
+
     if current_user.present? && current_user.review.exists?(cinema_id: @cinema.id)
       @review = Review.find_by(user_id: current_user.id, cinema_id: @cinema.id)
     else
