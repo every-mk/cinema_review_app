@@ -21,6 +21,16 @@
     margin-left: 10px;
   }
 
+  .offset {
+    margin: 20px 0;
+  }
+
+  .celebrity-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+
   form {
     margin-bottom: 20px;
   }
