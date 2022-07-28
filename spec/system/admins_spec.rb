@@ -11,7 +11,7 @@ RSpec.describe "Admins", type: :system do
     end
 
     it "when displayed, the content is displayed correctly" do
-      expect(page).to have_selector 'p', text: "新しい管理者を作成"
+      expect(page).to have_selector 'h1', text: "新しい管理者を作成"
       expect(page).to have_content "Eメール"
       expect(page).to have_content "パスワード"
       expect(page).to have_content "パスワード（確認用）"
@@ -66,7 +66,7 @@ RSpec.describe "Admins", type: :system do
       end
 
       it "when displayed, the content is displayed correctly" do
-        expect(page).to have_selector 'p', text: "管理者ログイン"
+        expect(page).to have_selector 'h1', text: "管理者ログイン"
         expect(page).to have_content "Eメール"
         expect(page).to have_content "パスワード"
         expect(page).to have_selector "input[value='ログイン']"

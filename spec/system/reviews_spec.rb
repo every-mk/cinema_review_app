@@ -23,7 +23,7 @@ RSpec.describe "Review", type: :system do
     end
 
     it "when displayed, the content is displayed correctly" do
-      expect(page).to have_selector 'p', text: "レビュー新規作成"
+      expect(page).to have_selector 'h1', text: "レビュー新規作成"
       expect(page).to have_content "おすすめ"
       expect(page).to have_content "また観たい"
       expect(page).to have_content "忘れた頃に観たい"
@@ -116,7 +116,7 @@ RSpec.describe "Review", type: :system do
     end
 
     it "when displayed, the content is displayed correctly" do
-      expect(page).to have_selector 'p', text: "レビュー編集"
+      expect(page).to have_selector 'h1', text: "レビュー編集"
       expect(page).to have_content "おすすめ"
       expect(page).to have_content "また観たい"
       expect(page).to have_content "忘れた頃に観たい"

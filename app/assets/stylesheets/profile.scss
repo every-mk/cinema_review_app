@@ -1,3 +1,25 @@
-// Place all the styles related to the profile controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.user-view {
+  .icon-box {
+    margin-left: 80px;
+  }
+
+  .host-icon {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 50px;
+  }
+
+  input, .child-radio-button {
+    margin-left: 20px;
+  }
+
+  .child-radio-button .form-control {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+
+  [type=submit]:not(disabled) {
+    margin-left: 0;
+  }
+}

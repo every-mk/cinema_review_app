@@ -39,3 +39,11 @@ ja:
         after_watch_do_not_want_to_see: もう観たくない
         spoiler: ネタバレ
         content: 評価内容
+  time:
+    formats:
+      default: "%Y年%m月%d日"
+      date: "%m月%d日"
+      time: "%H:%M"
+  date:
+    default: "%Y年%m月%d日"
+    date: "%m月%d日"
