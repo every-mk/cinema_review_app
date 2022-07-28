@@ -1,3 +1,23 @@
-<% @cinemas.each do |cinema| %>
-  <%= link_to cinema.title, cinema_path(cinema), data: {"turbolinks": false} %><br />
-<% end %>
+<div class="cinema-search">
+  <% @cinemas.each do |cinema| %>
+    <% if admin_signed_in? %>
+      <%= link_to edit_cinema_path(cinema), data: {"turbolinks": false} do %>
+        <%= image_tag cinema.image, alt: "映画画像", class: "cinema-image" %>
+        <p><%= cinema.title %></p>
+      <% end %>
+    <% else %>
+      <%= link_to cinema_path(cinema), data: {"turbolinks": false} do %>
+        <%= image_tag cinema.image, alt: "映画画像", class: "cinema-image" %>
+        <p><%= cinema.title %></p>
+      <% end %>
+    <% end %>
+      
+  <% end %>
+  <div class="actions">
+    <% if admin_signed_in? %>
+      <%= link_to "戻る", admins_path, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+    <% else %>
+      <%= link_to "戻る", root_path, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+    <% end %>
+  </div>
+</div>
