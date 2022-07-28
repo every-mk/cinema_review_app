@@ -1,59 +1,92 @@
 
-<div class="container user profile">
-  <div class="user-nav user-nav-pc">
-    <ul>
-      <li>
-        <%= link_to "アカウント", users_account_path, data: {"turbolinks": false} %>
-      </li>
-      <li class="active">
-        <%= link_to "プロファイル", profile_path, data: {"turbolinks": false} %>
-      </li>
-    </ul>
-  </div>
-  <div class="user-view">
-    <div class="user-view-box">
-      <%= form_with model: current_user.profile do |f| %>
-        <div class="show-content">
-          <div class="icon-box">
-              <%= image_tag current_user.profile.image, alt: "アイコン画像", class: "icon-image host-icon" %>
-            </div>
-        </div>
-        <div class="show-content">
-          <%= f.label "アイコン画像", class: "required-a" %><br />
-          <%= f.file_field :image, required: false, class: "input-w" %>
-        </div>
-        <div class="show-content">
-          <%= f.label :name, class: "required-a" %><br />
-          <%= f.text_field :name, placeholder: "名前", autocomplete: "name", required: true, class: "form-control input-w" %>
-        </div>
-        <div class="show-content">
-          <%= f.label :sex, class: "required-a" %><br />
-          <div class="child-radio-button">
-            <%= label :profile, :sex_man, "男性", class: "required-a" %>
-            <%= f.radio_button :sex, :man, required: true, class: "form-control" %>
-            <%= label :profile, :sex_woman, "女性", class: "required-a" %>
-            <%= f.radio_button :sex, :woman, required: true, class: "form-control" %>
+<div class="container-fiuld user profile">
+  <div class="row">
+    <div class="user-nav user-nav-pc">
+      <ul>
+        <li>
+          <%= link_to "アカウント", users_account_path, data: {"turbolinks": false} %>
+        </li>
+        <li class="active">
+          <%= link_to "プロファイル", profile_path, data: {"turbolinks": false} %>
+        </li>
+      </ul>
+    </div>
+    <div class="user-nav user-nav-mobile">
+      <ul>
+        <li>
+          <%= link_to "アカウント", users_account_path, data: {"turbolinks": false} %>
+        </li>
+        <li class="active">
+          <%= link_to "プロファイル", profile_path, data: {"turbolinks": false} %>
+        </li>
+      </ul>
+    </div>
+    <div class="user-view">
+      <div class="user-view-box">
+        <div class="update-content">
+          <div class="row">
+            <p>プロファイル</p>
           </div>
         </div>
-        <div class="show-content">
-          <%= f.label :date_of_birth, class: "required-a" %><br />
-          <%= f.date_field :date_of_birth, required: true, class: "form-control" %>
-        </div>
-        <div class="show-content">
-          <%= f.label :prefecture, class: "required-a" %><br />
-          <%= f.text_field :prefecture, placeholder: "都道府県", required: true, class: "form-control input-w" %>
-        </div>
-        <div class="show-content">
-          <%= f.label :municipality, class: "required-a" %><br />
-          <%= f.text_field :municipality, placeholder: "市区町村", required: true, class: "form-control input-w" %>
-        </div>
-        <div class="show-content">
-          <%= f.submit "更新", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+        <%= form_with model: current_user.profile do |f| %>
+          <div class="update-content">
+            <div class="row">
+              <div class="offset">
+                <div class="icon-box">
+                  <%= image_tag current_user.profile.image, alt: "アイコン画像", class: "icon-image host-icon" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.label "アイコン画像", class: "required-a" %>
+              <%= f.file_field :image, required: false, class: "input-w" %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.label :name, class: "required-a" %>
+              <%= f.text_field :name, placeholder: "名前", autocomplete: "name", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.label :sex, class: "required-a" %><br />
+              <%= label :profile, :sex_man, "男性", class: "required-a" %>
+              <%= f.radio_button :sex, :man, required: true, class: "form-control" %>
+              <%= label :profile, :sex_woman, "女性", class: "required-a" %>
+              <%= f.radio_button :sex, :woman, required: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.label :date_of_birth, class: "required-a" %>
+              <%= f.date_field :date_of_birth, required: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.label :prefecture, class: "required-a" %>
+              <%= f.text_field :prefecture, placeholder: "都道府県", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.label :municipality, class: "required-a" %>
+              <%= f.text_field :municipality, placeholder: "市区町村", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.submit "更新", class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
 
-      <div class="actions">
-        <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        <div class="actions">
+          <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        </div>
       </div>
     </div>
   </div>

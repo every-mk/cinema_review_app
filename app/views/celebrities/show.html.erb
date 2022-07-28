@@ -1,33 +1,88 @@
 
-<div class="container celebrity celebrity-show">
-  <div class="celebrity-show-view">
-    <div class="celebrity-inner">
-      <div class="offset">
-        <div class="icon-box">
-          <%= image_tag @celebrity.image, alt: "著名人画像", class: "celebrity-image" %>
+<div class="container cinema cinema-show">
+  <div class="cinema-show-view">
+    <div class="cinema-inner">
+      <div class="create-content">
+        <div class="offset">
+          <div class="icon-box">
+            <%= image_tag @cinema.image, alt: "映画画像", class: "cinema-image" %>
+          </div>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :title %><br />
+          <p class="cinema-title"><%= @cinema.title %></p>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :screen_time %><br />
+          <p class="cinema-screen-time"><%= l @cinema.screen_time, format: :time %></p>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :birthplace %><br />
+          <p class="cinema-birthplace"><%= @cinema.birthplace %></p>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :movie_rating %><br />
+          <p class="cinema-movie-rating"><%= @cinema.movie_rating %></p>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :director %><br />
+          <p class="cinema-director"><%= @cinema.director %></p>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :original %><br />
+          <p class="cinema-original"><%= @cinema.original %></p>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :appearance %><br />
+           <p class="cinema-appearance"><%= @cinema.appearance %></p>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :screenwriter %><br />
+          <p class="cinema-screenwriter"><%= @cinema.screenwriter %></p>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :distribution %><br />
+          <p class="cinema-distribution"><%= @cinema.distribution %></p>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :start_date %><br />
+          <p class="cinema-start-date"><%= l @cinema.start_date %></p>
+        </div>
+        <div class="create-content">
+          <%= label :cinema, :story %><br />
+          <p class="cinema-story"><%= @cinema.story %></p>
         </div>
       </div>
-      <div class="create-content">
-        <%= label :celebrity, :ruby %><br />
-        <p class="celebrity-ruby"><%= @celebrity.ruby %></p>
-      </div>
-      <div class="create-content">
-        <%= label :celebrity, :name %><br />
-        <p class="celebrity-name"><%= @celebrity.name %></p>
-      </div>
-      <div class="create-content">
-        <%= label :celebrity, :date_of_birth %><br />
-        <p class="celebrity-date-of-birth"><%= @celebrity.date_of_birth %></p>
-      </div>
-      <div class="create-content">
-        <%= label :celebrity, :birthplace %><br />
-        <p class="celebrity-birthplace"><%= @celebrity.birthplace %></p>
-      </div>
-      <div class="create-content">
-        <%= label :celebrity, :history %><br />
-        <p class="celebrity-history"><%= @celebrity.history %></p>
+
+      <div class="reviews-content">
+        <p>レビュー</p>
+        <div class="review-choice">
+          <p class="use-border"><%= @recommendation_count %> おすすめ</p>
+          <p class="use-border"><%= @after_watch_want_to_see_again %> また観たい</p>
+          <p class="use-border"><%= @after_watch_want_to_see_when_forget %> 忘れた頃に観たい</p>
+          <p class="use-border"><%= @after_watch_do_not_want_to_see %> もう観たくない</p>
+        </div>
+        <div class="review-contents">
+          <p >レビュー内容</p>
+          <% @reviews.each do |review| %>
+            <div class="review-content">
+              <% if review.spoiler %>
+                <p class="color-white"><%= review.content %></p>
+              <% else %>
+                <p><%= review.content %></p>
+              <%end%>
+            </div>
+          <% end %>
+        </div>
       </div>
 
+      <div class="actions use-border">
+        <% if @review.present? %>
+          <%= link_to "レビューを編集する", edit_review_path(@review) , data: {"turbolinks": false} %>
+        <% elsif current_user.present? %>
+          <%= link_to "レビューを書く", new_review_path(cinema_id: @cinema.id), data: {"turbolinks": false} %>
+        <% end %>
+      </div>
       <div class="actions">
         <%= link_to "戻る", root_path, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
       </div>
