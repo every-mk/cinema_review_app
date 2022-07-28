@@ -14,6 +14,10 @@
       
   <% end %>
   <div class="actions">
-    <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+    <% if admin_signed_in? %>
+      <%= link_to "戻る", admins_path, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+    <% else %>
+      <%= link_to "戻る", root_path, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+    <% end %>
   </div>
 </div>
