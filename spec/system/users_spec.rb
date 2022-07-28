@@ -363,7 +363,7 @@ RSpec.describe "Users", type: :system do
 
       scenario "when you back click the link, the account will be displayed" do
         click_link "戻る"
-        expect(page).to have_content "アカウント"
+        expect(page).to have_content "左上の入力フィールドから映画タイトルまたは著名人を検索してください。"
       end
     end
 
