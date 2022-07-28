@@ -7,28 +7,28 @@
 
         <div class="field">
           <div class="form-group">
-            <%= f.label "メールアドレス" %><br />
+            <%= f.label "メールアドレス" %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力してください", class: "form-control" %>
           </div>
         </div>
 
         <div class="field">
           <div class="form-group">
-            <%= f.label "変更後パスワード（変更する場合のみ入力）" %><br />
+            <%= f.label "変更後パスワード（変更する場合のみ入力）" %>
             <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
           </div>
         </div>
 
         <div class="field">
           <div class="form-group">
-            <%= f.label "パスワード確認用（変更する場合のみ入力）" %><br />
+            <%= f.label "パスワード確認用（変更する場合のみ入力）" %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
           </div>
         </div>
 
         <div class="field">
           <div class="form-group">
-            <%= f.label "現在のパスワード" %><br />
+            <%= f.label "現在のパスワード" %>
             <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "現在のパスワードを入力", class: "form-control" %>
           </div>
         </div>

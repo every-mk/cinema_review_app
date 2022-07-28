@@ -1,69 +1,101 @@
 
-<div class="container cinema cinema-new">
-  <div class="cinema-new-view">
-    <div class="cinema-new-view-box">
-      <h1>映画新規作成</h1>
-      <div class="cinema-inner">
+<div class="container-fiuld cinema cinema-new">
+  <div class="row">
+    <div class="cinema-new-view">
+      <div class="cinema-new-view-box">
+        <div class="create-content">
+          <div class="row">
+            <p>映画新規作成</p>
+          </div>
+        </div>
         <%= form_with model: @cinema do |f| %>
           <div class="create-content">
-            <div class="offset">
-              <div class="icon-box">
-                <% if @cinema.image.present? %>
-                  <%= image_tag @cinema.image, alt: "映画画像", class: "cinema-image" %>
-                <% end %>
+            <div class="row">
+              <div class="offset">
+                <div class="icon-box">
+                  <% if @cinema.image.present? %>
+                    <%= image_tag @cinema.image, alt: "映画画像", class: "icon-image host-icon" %>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
           <div class="create-content">
-            <%= f.label :image, class: "required-a" %><br />
-            <%= f.file_field :image, required: false, required: true, class: "input-w" %>
+            <div class="row">
+              <%= f.label :image, class: "required-a" %>
+              <%= f.file_field :image, required: false, required: true, class: "input-w" %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :title, class: "required-a" %><br />
-            <%= f.text_field :title, placeholder: "タイトル", autocomplete: "title", required: true, class: "form-control input-w" %>
+            <div class="row">
+              <%= f.label :title, class: "required-a" %>
+              <%= f.text_field :title, placeholder: "タイトル", autocomplete: "title", required: true, class: "form-control input-w" %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :screen_time, class: "required-a" %><br />
-            <%= f.time_field :screen_time, autofocus: true, autocomplete: "screen_time", required: true, class: "form-control", value: @cinema.screen_time %>
+            <div class="row">
+              <%= f.label :screen_time, class: "required-a" %><br />
+              <%= f.time_field :screen_time, autofocus: true, autocomplete: "screen_time", required: true, class: "form-control", value: @cinema.screen_time %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :birthplace, class: "required-a" %><br />
-            <%= f.text_field :birthplace, placeholder: "制作国", autocomplete: "birthplace", required: true, class: "form-control input-w" %>
+            <div class="row">
+              <%= f.label :birthplace, class: "required-a" %>
+              <%= f.text_field :birthplace, placeholder: "制作国", autocomplete: "birthplace", required: true, class: "form-control input-w" %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :movie_rating, class: "required-a" %><br />
-            <%= f.text_field :movie_rating, placeholder: "映画観客指定", required: true, class: "form-control input-w" %>
+            <div class="row">
+              <%= f.label :movie_rating, class: "required-a" %>
+              <%= f.text_field :movie_rating, placeholder: "映画観客指定", required: true, class: "form-control input-w" %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :director, class: "required-a" %><br />
-            <%= f.text_field :director, placeholder: "監督", required: true, class: "form-control input-w" %>
+            <div class="row">
+              <%= f.label :director, class: "required-a" %>
+              <%= f.text_field :director, placeholder: "監督", required: true, class: "form-control input-w" %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :original, class: "required-a" %><br />
-            <%= f.text_field :original, placeholder: "原作", required: true, class: "form-control input-w" %>
+            <div class="row">
+              <%= f.label :original, class: "required-a" %>
+              <%= f.text_field :original, placeholder: "原作", required: true, class: "form-control input-w" %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :appearance, class: "required-a" %><br />
-            <%= f.text_field :appearance, placeholder: "出演", required: true, class: "form-control input-w" %>
+            <div class="row">
+              <%= f.label :appearance, class: "required-a" %>
+              <%= f.text_field :appearance, placeholder: "出演", required: true, class: "form-control input-w" %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :screenwriter, class: "required-a" %><br />
-            <%= f.text_field :screenwriter, placeholder: "映画脚本家", required: true, class: "form-control input-w" %>
+            <div class="row">
+              <%= f.label :screenwriter, class: "required-a" %>
+              <%= f.text_field :screenwriter, placeholder: "映画脚本家", required: true, class: "form-control input-w" %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :distribution, class: "required-a" %><br />
-            <%= f.text_field :distribution, placeholder: "配給", required: true, class: "form-control input-w" %>
+            <div class="row">
+              <%= f.label :distribution, class: "required-a" %>
+              <%= f.text_field :distribution, placeholder: "配給", required: true, class: "form-control input-w" %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :start_date, class: "required-a" %><br />
-            <%= f.date_field :start_date, autofocus: true, autocomplete: "screen_time", required: true, class: "form-control", value: @cinema.screen_time %>
+            <div class="row">
+              <%= f.label :start_date, class: "required-a" %><br />
+              <%= f.date_field :start_date, autofocus: true, autocomplete: "screen_time", required: true, class: "form-control", value: @cinema.screen_time %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.label :story, class: "required-a" %><br />
-            <%= f.text_area :story, placeholder: "ストーリー", required: true, class: "form-control input-w" %>
+            <div class="row">
+              <%= f.label :story, class: "required-a" %>
+              <%= f.text_field :story, placeholder: "ストーリー", required: true, class: "form-control input-w" %>
+            </div>
           </div>
           <div class="create-content">
-            <%= f.submit "作成", class: "btn btn-primary" %>
+            <div class="row">
+              <%= f.submit "作成", class: "btn btn-primary" %>
+            </div>
           </div>
         <% end %>
 

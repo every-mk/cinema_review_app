@@ -1,43 +1,62 @@
 
-<div class="container review review-new">
-  <div class="review-new-view">
-    <div class="review-new-view-box">
-      <div class="create-content">
-        <h1>レビュー新規作成</h1>
-      </div>
-      <div class="review-inner">
-      <%= form_with model: @review do |f| %>
+<div class="container-fiuld review review-new">
+  <div class="row">
+    <div class="review-new-view">
+      <div class="review-new-view-box">
         <div class="create-content">
-          <%= f.label :recommendation, class: "required-a" %>
-          <%= f.check_box :recommendation, class: "form-control" %>
-        </div>
-        <div class="create-content">
-          <div class="child-radio-button">
-            <%= f.label :after_watch_want_to_see_again, class: "required-a" %>
-            <%= f.radio_button :after_watch, :want_to_see_again, required: true, class: "form-control" %>
-            <%= f.label :after_watch_want_to_see_when_forget, class: "required-a" %>
-            <%= f.radio_button :after_watch, :want_to_see_when_forget, required: true, class: "form-control" %>
-            <%= f.label :after_watch_do_not_want_to_see, class: "required-a" %>
-            <%= f.radio_button :after_watch, :do_not_want_to_see, required: true, class: "form-control" %>
+          <div class="row">
+            <p>レビュー新規作成</p>
           </div>
         </div>
-        <div class="create-content">
-          <%= f.label :spoiler, class: "required-a" %>
-          <%= f.check_box :spoiler, class: "form-control" %>
-        </div>
-        <div class="create-content">
-          <%= f.label :content, class: "required-a" %><br />
-          <%= f.text_area :content, placeholder: "評価内容", required: true, class: "form-control input-w" %>
-        </div>
-        <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
-        <%= f.hidden_field :cinema_id, value: "#{@cinema_id}" %>
-        <div class="create-content">
-          <%= f.submit "作成", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+        <%= form_with model: @review do |f| %>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :recommendation, class: "required-a" %>
+              <%= f.check_box :recommendation, class: "form-control" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :after_watch_want_to_see_again, class: "required-a" %>
+              <%= f.radio_button :after_watch, :want_to_see_again, required: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :after_watch_want_to_see_when_forget, class: "required-a" %>
+              <%= f.radio_button :after_watch, :want_to_see_when_forget, required: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :after_watch_do_not_want_to_see, class: "required-a" %>
+              <%= f.radio_button :after_watch, :do_not_want_to_see, required: true, class: "form-control" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :spoiler, class: "required-a" %>
+              <%= f.check_box :spoiler, class: "form-control" %>
+            </div>
+          </div>
+          <div class="create-content">
+            <div class="row">
+              <%= f.label :content, class: "required-a" %>
+              <%= f.text_field :content, placeholder: "評価内容", required: true, class: "form-control input-w" %>
+            </div>
+          </div>
+          <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
+          <%= f.hidden_field :cinema_id, value: "#{@cinema_id}" %>
+          <div class="create-content">
+            <div class="row">
+              <%= f.submit "作成", class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
 
-      <div class="actions">
-        <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        <div class="actions">
+          <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        </div>
       </div>
     </div>
   </div>

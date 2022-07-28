@@ -1,13 +1,13 @@
 <div class="container user-password-edit">
   <div class="user-frame">
-    <h1>パスワードを変更</h1>
+    <p>パスワードを変更</p>
     <div class="user-inner">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "users/shared/error_messages", resource: resource %>
         <%= f.hidden_field :reset_password_token %>
 
         <div class="field">
-          <%= f.label :password %><br />
+          <%= f.label :password %>
           <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "form-control" %>
         </div>
 
