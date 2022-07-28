@@ -2,6 +2,11 @@
 <div class="container celebrity celebrity-show">
   <div class="celebrity-show-view">
     <div class="celebrity-inner">
+      <div class="offset">
+        <div class="icon-box">
+          <%= image_tag @celebrity.image, alt: "著名人画像", class: "celebrity-image" %>
+        </div>
+      </div>
       <div class="create-content">
         <%= label :celebrity, :ruby %><br />
         <p class="celebrity-ruby"><%= @celebrity.ruby %></p>
