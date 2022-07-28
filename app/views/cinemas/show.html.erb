@@ -67,9 +67,9 @@
           <% @reviews.each do |review| %>
             <div class="review-content">
               <% if review.spoiler %>
-                <p><%= review.content %></p>
-              <% else %>
                 <p class="color-white"><%= review.content %></p>
+              <% else %>
+                <p><%= review.content %></p>
               <%end%>
             </div>
           <% end %>
