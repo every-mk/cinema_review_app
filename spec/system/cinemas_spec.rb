@@ -26,7 +26,7 @@ RSpec.describe "Cinema", type: :system do
     end
 
     it "when displayed, the content is displayed correctly" do
-      expect(page).to have_selector 'p', text: "映画新規作成"
+      expect(page).to have_selector 'h1', text: "映画新規作成"
       expect(page).to have_content "映画画像"
       expect(page).to have_content "タイトル"
       expect(page).to have_content "上映時間"
@@ -254,7 +254,7 @@ RSpec.describe "Cinema", type: :system do
       end
 
       it "when displayed, the content is displayed correctly" do
-        expect(page).to have_selector 'p', text: "映画編集"
+        expect(page).to have_selector 'h1', text: "映画編集"
         expect(page).to have_content "映画画像"
         expect(page).to have_content "タイトル"
         expect(page).to have_content "上映時間"
@@ -265,7 +265,7 @@ RSpec.describe "Cinema", type: :system do
         expect(page).to have_content "出演"
         expect(page).to have_content "映画脚本家"
         expect(page).to have_content "配給"
-        expect(page).to have_content "上映時間"
+        expect(page).to have_content "上映開始日"
         expect(page).to have_content "ストーリー"
         expect(page).to have_selector "input[value='更新']"
         expect(page).to have_content "戻る"
@@ -363,7 +363,7 @@ RSpec.describe "Cinema", type: :system do
 
       scenario "when you back click the link, will be displayed", js: true do
         click_link "戻る"
-        expect(page).to have_content "映画 編集"
+        expect(page).to have_content "映画および著名人を編集する場合は、左上の入力フィールドから映画タイトルまたは著名人を検索してください。"
       end
     end
 
@@ -392,7 +392,7 @@ RSpec.describe "Cinema", type: :system do
 
       it "when displayed, the content is displayed correctly" do
         expect(page).to have_content cinema.title
-        expect(page).to have_content cinema.screen_time
+        expect(page).to have_content "22:42"
         expect(page).to have_content cinema.birthplace
         expect(page).to have_content cinema.birthplace
         expect(page).to have_content cinema.movie_rating
@@ -401,7 +401,7 @@ RSpec.describe "Cinema", type: :system do
         expect(page).to have_content cinema.appearance
         expect(page).to have_content cinema.screenwriter
         expect(page).to have_content cinema.distribution
-        expect(page).to have_content cinema.start_date
+        expect(page).to have_content "2022/07/23"
         expect(page).to have_content cinema.story
         expect(page).to have_content "レビューを書く"
         expect(page).to have_content "戻る"
@@ -409,7 +409,7 @@ RSpec.describe "Cinema", type: :system do
 
       scenario "when you back click the link, the will be displayed", js: true do
         click_link "戻る"
-        expect(page).to have_content "映画 詳細"
+        expect(page).to have_content "左上の入力フィールドから映画タイトルまたは著名人を検索してください。"
       end
     end
 
@@ -424,7 +424,7 @@ RSpec.describe "Cinema", type: :system do
 
       it "when displayed, the content is displayed correctly" do
         expect(page).to have_content cinema.title
-        expect(page).to have_content cinema.screen_time
+        expect(page).to have_content "22:42"
         expect(page).to have_content cinema.birthplace
         expect(page).to have_content cinema.birthplace
         expect(page).to have_content cinema.movie_rating
@@ -433,7 +433,7 @@ RSpec.describe "Cinema", type: :system do
         expect(page).to have_content cinema.appearance
         expect(page).to have_content cinema.screenwriter
         expect(page).to have_content cinema.distribution
-        expect(page).to have_content cinema.start_date
+        expect(page).to have_content "2022/07/23"
         expect(page).to have_content cinema.story
         expect(page).to have_content "レビューを編集する"
         expect(page).to have_content "戻る"
@@ -441,8 +441,27 @@ RSpec.describe "Cinema", type: :system do
 
       scenario "when you back click the link, the will be displayed", js: true do
         click_link "戻る"
-        expect(page).to have_content "映画 詳細"
+        expect(page).to have_content "左上の入力フィールドから映画タイトルまたは著名人を検索してください。"
       end
+    end
+  end
+
+  describe "cinema#search" do
+    before do
+      sign_in user
+      visit root_path
+      visit cinemas_search_path(name: "M")
+    end
+
+    it "when displayed, the content is displayed correctly" do
+      expect(page).to have_selector "img[src='#{url_for(cinema.image)}']"
+      expect(page).to have_content cinema.title
+      expect(page).to have_content "戻る"
+    end
+
+    scenario "when you back click the link, the will be displayed", js: true do
+      click_link "戻る"
+      expect(page).to have_content "左上の入力フィールドから映画タイトルまたは著名人を検索してください。"
     end
   end
 end

@@ -26,7 +26,7 @@ RSpec.describe "Celebrity", type: :system do
     end
 
     it "when displayed, the content is displayed correctly" do
-      expect(page).to have_selector 'p', text: "著名人新規作成"
+      expect(page).to have_selector 'h1', text: "著名人新規作成"
       expect(page).to have_content "著名人画像"
       expect(page).to have_content "ふりがな"
       expect(page).to have_content "名前"
@@ -116,7 +116,7 @@ RSpec.describe "Celebrity", type: :system do
       end
 
       it "when displayed, the content is displayed correctly" do
-        expect(page).to have_selector 'p', text: "著名人編集"
+        expect(page).to have_selector 'h1', text: "著名人編集"
         expect(page).to have_content "著名人画像"
         expect(page).to have_content "ふりがな"
         expect(page).to have_content "名前"
@@ -215,7 +215,26 @@ RSpec.describe "Celebrity", type: :system do
 
     scenario "when you back click the link, the will be displayed", js: true do
       click_link "戻る"
-      expect(page).to have_content "著名人 詳細"
+      expect(page).to have_content "左上の入力フィールドから映画タイトルまたは著名人を検索してください。"
+    end
+  end
+
+  describe "celebrity#search" do
+    before do
+      sign_in user
+      visit root_path
+      visit celebrities_search_path(name: "M")
+    end
+
+    it "when displayed, the content is displayed correctly" do
+      expect(page).to have_selector "img[src='#{url_for(celebrity.image)}']"
+      expect(page).to have_content celebrity.name
+      expect(page).to have_content "戻る"
+    end
+
+    scenario "when you back click the link, the will be displayed", js: true do
+      click_link "戻る"
+      expect(page).to have_content "左上の入力フィールドから映画タイトルまたは著名人を検索してください。"
     end
   end
 end
