@@ -2,6 +2,12 @@ class CinemasController < ApplicationController
   before_action :set_cinema, only: [:show, :edit, :update, :destroy]
 
   def index
+    @cinemas = Cinema.all
+    @cinema_urls = []
+
+    @cinemas.each do |cinema|
+      @cinema_urls.push(url_for(cinema.image))
+    end
   end
 
   def new
