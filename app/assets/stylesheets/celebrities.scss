@@ -1,3 +1,43 @@
-// Place all the styles related to the celebrities controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.celebrity-search {
+  .celebrity-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+}
+
+.celebrity {
+  h1 {
+    margin: 10px 0;
+  }
+
+  .celebrity-inner {
+    margin-left: 10px;
+  }
+
+  form {
+    margin-bottom: 20px;
+  }
+
+  input, textarea {
+    margin-left: 20px;
+  }
+
+  [type=submit]:not(disabled) {
+    margin-left: 0;
+  }
+
+  .create-content {
+    margin-bottom: 10px;
+
+    p {
+      margin-left: 10px;
+    }
+  }
+}
