@@ -37,7 +37,8 @@ RSpec.describe "Cinema", type: :system do
       expect(page).to have_content "出演"
       expect(page).to have_content "映画脚本家"
       expect(page).to have_content "配給"
-      expect(page).to have_content "上映時間"
+      expect(page).to have_content "上映開始日"
+      expect(page).to have_content "上映終了日"
       expect(page).to have_content "ストーリー"
       expect(page).to have_selector "input[value='作成']"
       expect(page).to have_content "戻る"
@@ -55,6 +56,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_distribution", with: build_cinema.distribution
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
 
       expect do
@@ -74,6 +76,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_distribution", with: build_cinema.distribution
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
       click_button "作成"
       expect(page).to have_content "タイトルを入力してください"
@@ -90,6 +93,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_distribution", with: build_cinema.distribution
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
       click_button "作成"
       expect(page).to have_content "上映時間を入力してください"
@@ -106,6 +110,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_distribution", with: build_cinema.distribution
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
       click_button "作成"
       expect(page).to have_content "制作国を入力してください"
@@ -122,6 +127,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_distribution", with: build_cinema.distribution
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
       click_button "作成"
       expect(page).to have_content "映画観客指定を入力してくださ"
@@ -138,6 +144,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_distribution", with: build_cinema.distribution
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
       click_button "作成"
       expect(page).to have_content "監督を入力してください"
@@ -154,6 +161,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_distribution", with: build_cinema.distribution
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
       click_button "作成"
       expect(page).to have_content "原作を入力してください"
@@ -170,6 +178,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_distribution", with: build_cinema.distribution
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
       click_button "作成"
       expect(page).to have_content "出演を入力してください"
@@ -186,6 +195,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_appearance", with: build_cinema.appearance
       fill_in "cinema_distribution", with: build_cinema.distribution
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
       click_button "作成"
       expect(page).to have_content "映画脚本家を入力してください"
@@ -202,6 +212,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_appearance", with: build_cinema.appearance
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
       click_button "作成"
       expect(page).to have_content "配給を入力してください"
@@ -218,9 +229,45 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_appearance", with: build_cinema.appearance
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_distribution", with: build_cinema.distribution
+      fill_in "cinema_end_date", with: build_cinema.end_date
       fill_in "cinema_story", with: build_cinema.story
       click_button "作成"
       expect(page).to have_content "上映開始日を入力してください"
+    end
+
+    scenario "when end date is not fill, not created" do
+      attach_file 'cinema_image', "#{Rails.root}/spec/fixtures/cinema/sample_01.png"
+      fill_in "cinema_title", with: build_cinema.title
+      fill_in "cinema_screen_time", with: build_cinema.screen_time
+      fill_in "cinema_birthplace", with: build_cinema.birthplace
+      fill_in "cinema_movie_rating", with: build_cinema.movie_rating
+      fill_in "cinema_director", with: build_cinema.director
+      fill_in "cinema_original", with: build_cinema.original
+      fill_in "cinema_appearance", with: build_cinema.appearance
+      fill_in "cinema_screenwriter", with: build_cinema.screenwriter
+      fill_in "cinema_distribution", with: build_cinema.distribution
+      fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_story", with: build_cinema.story
+      click_button "作成"
+      expect(page).to have_content "上映終了日を入力してください"
+    end
+
+    scenario "when end date is 1day before start date, not created" do
+      attach_file 'cinema_image', "#{Rails.root}/spec/fixtures/cinema/sample_01.png"
+      fill_in "cinema_title", with: build_cinema.title
+      fill_in "cinema_screen_time", with: build_cinema.screen_time
+      fill_in "cinema_birthplace", with: build_cinema.birthplace
+      fill_in "cinema_movie_rating", with: build_cinema.movie_rating
+      fill_in "cinema_director", with: build_cinema.director
+      fill_in "cinema_original", with: build_cinema.original
+      fill_in "cinema_appearance", with: build_cinema.appearance
+      fill_in "cinema_screenwriter", with: build_cinema.screenwriter
+      fill_in "cinema_distribution", with: build_cinema.distribution
+      fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.start_date - 1.day
+      fill_in "cinema_story", with: build_cinema.story
+      click_button "作成"
+      expect(page).to have_content "上映終了日は開始日より前の日付は無効です"
     end
 
     scenario "when story is not fill, not created" do
@@ -235,6 +282,7 @@ RSpec.describe "Cinema", type: :system do
       fill_in "cinema_screenwriter", with: build_cinema.screenwriter
       fill_in "cinema_distribution", with: build_cinema.distribution
       fill_in "cinema_start_date", with: build_cinema.start_date
+      fill_in "cinema_end_date", with: build_cinema.end_date
       click_button "作成"
       expect(page).to have_content "ストーリーを入力してください"
     end
@@ -283,6 +331,7 @@ RSpec.describe "Cinema", type: :system do
         fill_in "cinema_screenwriter", with: build_cinema.screenwriter
         fill_in "cinema_distribution", with: build_cinema.distribution
         fill_in "cinema_start_date", with: build_cinema.start_date
+        fill_in "cinema_end_date", with: build_cinema.end_date
         fill_in "cinema_story", with: build_cinema.story
         click_button "更新"
         expect(page).to have_content "映画を更新しました"
@@ -346,6 +395,18 @@ RSpec.describe "Cinema", type: :system do
         fill_in "cinema_start_date", with: nil
         click_button "更新"
         expect(page).to have_content "上映開始日を入力してください"
+      end
+
+      scenario "when end date is not fill, not updated" do
+        fill_in "cinema_end_date", with: nil
+        click_button "更新"
+        expect(page).to have_content "上映終了日を入力してください"
+      end
+
+      scenario "when end date is 1day before start date, not updated" do
+        fill_in "cinema_end_date", with: build_cinema.start_date - 1.day
+        click_button "更新"
+        expect(page).to have_content "上映終了日は開始日より前の日付は無効です"
       end
 
       scenario "when story is not fill, not updated" do

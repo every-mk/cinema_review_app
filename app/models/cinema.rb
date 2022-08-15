@@ -14,4 +14,14 @@ class Cinema < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :story, presence: true, length: { maximum: 1000 }
+
+  validate :screening_period_validates
+
+  def screening_period_validates
+    return if self.start_date.nil? or self.end_date.nil?
+
+    if self.start_date > self.end_date
+      errors.add(:end_date, "は開始日より前の日付は無効です")
+    end
+  end
 end
