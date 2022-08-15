@@ -55,7 +55,11 @@
           </div>
           <div class="create-content">
             <%= f.label :start_date, class: "required-a" %><br />
-            <%= f.date_field :start_date, autofocus: true, autocomplete: "screen_time", required: true, class: "form-control" %>
+            <%= f.date_field :start_date, autofocus: true, autocomplete: "start_date", required: true, class: "form-control" %>
+          </div>
+          <div class="create-content">
+            <%= f.label :end_date, class: "required-a" %><br />
+            <%= f.date_field :end_date, autofocus: true, autocomplete: "end_date", required: true, class: "form-control" %>
           </div>
           <div class="create-content">
             <%= f.label :story, class: "required-a" %><br />

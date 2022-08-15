@@ -64,6 +64,11 @@ RSpec.describe Cinema, type: :model do
       expect(new_cinema).not_to be_valid
     end
 
+    it "when end date is nil, it registration is not possible" do
+      new_cinema.end_date = nil
+      expect(new_cinema).not_to be_valid
+    end
+
     it "when story is nil, it registration is not possible" do
       new_cinema.story = nil
       expect(new_cinema).not_to be_valid
@@ -130,6 +135,11 @@ RSpec.describe Cinema, type: :model do
 
     it "when start date is nil, it can be not updated" do
       cinema.start_date = nil
+      expect(cinema).not_to be_valid
+    end
+
+    it "when end date is nil, it can be not updated" do
+      cinema.end_date = nil
       expect(cinema).not_to be_valid
     end
 

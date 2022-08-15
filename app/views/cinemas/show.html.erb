@@ -48,6 +48,10 @@
           <p class="cinema-start-date"><%= l @cinema.start_date %></p>
         </div>
         <div class="create-content">
+          <%= label :cinema, :end_date %><br />
+          <p class="cinema-end-date"><%= l @cinema.end_date %></p>
+        </div>
+        <div class="create-content">
           <%= label :cinema, :story %><br />
           <p class="cinema-story"><%= @cinema.story %></p>
         </div>

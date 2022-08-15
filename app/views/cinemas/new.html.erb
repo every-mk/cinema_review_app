@@ -6,15 +6,6 @@
       <div class="cinema-inner">
         <%= form_with model: @cinema do |f| %>
           <div class="create-content">
-            <div class="offset">
-              <div class="icon-box">
-                <% if @cinema.image.present? %>
-                  <%= image_tag @cinema.image, alt: "映画画像", class: "cinema-image" %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <div class="create-content">
             <%= f.label :image, class: "required-a" %><br />
             <%= f.file_field :image, required: false, required: true, class: "input-w" %>
           </div>
@@ -56,7 +47,11 @@
           </div>
           <div class="create-content">
             <%= f.label :start_date, class: "required-a" %><br />
-            <%= f.date_field :start_date, autofocus: true, autocomplete: "screen_time", required: true, class: "form-control", value: @cinema.screen_time %>
+            <%= f.date_field :start_date, autofocus: true, autocomplete: "start_date", required: true, class: "form-control", value: @cinema.start_date %>
+          </div>
+          <div class="create-content">
+            <%= f.label :end_date, class: "required-a" %><br />
+            <%= f.date_field :end_date, autofocus: true, autocomplete: "end_date", required: true, class: "form-control", value: @cinema.end_date %>
           </div>
           <div class="create-content">
             <%= f.label :story, class: "required-a" %><br />

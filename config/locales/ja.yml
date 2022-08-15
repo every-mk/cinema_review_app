@@ -28,6 +28,7 @@ ja:
         screenwriter: 映画脚本家
         distribution: 配給
         start_date: 上映開始日
+        end_date: 上映終了日
         story: ストーリー
         image: 映画画像
       review:

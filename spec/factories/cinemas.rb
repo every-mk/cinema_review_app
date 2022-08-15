@@ -10,6 +10,7 @@ FactoryBot.define do
     screenwriter { "MyString" }
     distribution { "MyString" }
     start_date { "2022-07-23" }
+    end_date { "2022-08-23" }
     story { "MyString" }
   end
 end

@@ -12,5 +12,6 @@ class Cinema < ApplicationRecord
   validates :screenwriter, presence: true, length: { maximum: 50 }
   validates :distribution, presence: true, length: { maximum: 20 }
   validates :start_date, presence: true
+  validates :end_date, presence: true
   validates :story, presence: true, length: { maximum: 1000 }
 end

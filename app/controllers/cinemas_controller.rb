@@ -76,6 +76,6 @@ class CinemasController < ApplicationController
   end
 
   def cinema_params
-    params.require(:cinema).permit(:title, :screen_time, :birthplace, :movie_rating, :director, :original, :appearance, :screenwriter, :distribution, :start_date, :story, :image)
+    params.require(:cinema).permit(:title, :screen_time, :birthplace, :movie_rating, :director, :original, :appearance, :screenwriter, :distribution, :start_date, :end_date, :story, :image)
   end
 end
