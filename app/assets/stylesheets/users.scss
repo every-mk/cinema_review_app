@@ -1,3 +1,49 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.user-frame {
+  h1 {
+    margin: 10px 0;
+  }
+
+  .user-inner {
+    margin-left: 10px;
+  }
+
+  form {
+    margin-bottom: 20px;
+  }
+
+  input, .child-radio-button {
+    margin-left: 20px;
+  }
+
+  .child-radio-button .form-control {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+
+  [type=submit]:not(disabled) {
+    margin-left: 0;
+  }
+}
+
+.user {
+  .user-nav {
+    margin: 20px 0;
+
+    li {
+      display: inline;
+    }
+
+    .active a {
+      font-size: 18px;
+      color: rgb(61, 132, 255);
+    }
+  }
+
+  .show-content {
+    margin-bottom: 10px;
+
+    .show-information {
+      margin-left: 10px;
+    }
+  }
+}

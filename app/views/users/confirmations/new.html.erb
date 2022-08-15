@@ -1,6 +1,6 @@
 <div class="container user-confirmations-new">
   <div class="user-frame">
-    <p>認証確認メールが届かない場合</p>
+    <h1>認証確認メールが届かない場合</h1>
     <div class="user-inner">
       <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
         <%= render "users/shared/error_messages", resource: resource %>

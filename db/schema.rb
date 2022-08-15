@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_24_000614) do
+ActiveRecord::Schema.define(version: 2022_08_14_140702) do
 
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -76,7 +76,14 @@ ActiveRecord::Schema.define(version: 2022_07_24_000614) do
     t.string "story"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "end_date"
     t.index ["title"], name: "index_cinemas_on_title", unique: true
+  end
+
+  create_table "genres", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "profiles", charset: "utf8mb3", force: :cascade do |t|

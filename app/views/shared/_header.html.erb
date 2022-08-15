@@ -1,16 +1,15 @@
 <header>
   <div class="header-left-nav">
-    <%= link_to image_tag("", alt: "サイトのロゴ画像"), root_path, data: {"turbolinks": false} %>
     <%= render "shared/search" %>
   </div>
   <div class="header-right-nav">
     <% if admin_signed_in? %>
       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, data: {"turbolinks": false} %>
     <% elsif user_signed_in? %>
-      <div class="nav-item"><%= image_tag current_user.profile.image, alt: "アイコン画像" %></div>
+      <div class="nav-item"><%= image_tag current_user.profile.image, alt: "アイコン画像", class: "host-icon" %></div>
       <div class="nav-item">
-        <li><%= link_to "設定", users_account_path, data: {"turbolinks": false} %></li>
-        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {"turbolinks": false} %></li>
+        <%= link_to "設定", users_account_path, data: {"turbolinks": false} %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {"turbolinks": false} %>
       </div>
     <% else %>
       <%= link_to "ログイン", new_user_session_path, data: {"turbolinks": false} %>

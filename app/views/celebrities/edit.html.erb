@@ -1,65 +1,45 @@
-
-<div class="container-fiuld celebrity celebrity-edit">
-  <div class="row">
-    <div class="celebrity-new-view">
-      <div class="celebrity-new-view-box">
-        <div class="create-content">
-          <div class="row">
-            <p>著名人編集</p>
-          </div>
-        </div>
+<div class="container celebrity celebrity-edit">
+  <div class="celebrity-new-view">
+    <div class="celebrity-new-view-box">
+      <h1>著名人編集</h1>
+      <div class="celebrity-inner">
         <%= form_with model: @celebrity do |f| %>
           <div class="create-content">
             <div class="row">
               <div class="offset">
-                <div class="icon-box">
-                  <% if @celebrity.image.present? %>
-                    <%= image_tag @celebrity.image, alt: "著名人画像", class: "icon-image host-icon" %>
-                  <% end %>
-                </div>
+              <div class="icon-box">
+                <% if @celebrity.image.present? %>
+                  <%= image_tag @celebrity.image, alt: "著名人画像", class: "icon-image host-icon" %>
+                <% end %>
               </div>
             </div>
           </div>
           <div class="create-content">
-            <div class="row">
-              <%= f.label :image, class: "required-a" %>
-              <%= f.file_field :image, required: false, class: "input-w" %>
-            </div>
+            <%= f.label :image, class: "required-a" %><br />
+            <%= f.file_field :image, required: false, class: "input-w" %>
           </div>
           <div class="create-content">
-            <div class="row">
-              <%= f.label :ruby, class: "required-a" %>
-              <%= f.text_field :ruby, placeholder: "なまえ", autocomplete: "ruby", required: true, class: "form-control input-w", value: @celebrity.ruby %>
-            </div>
+            <%= f.label :ruby, class: "required-a" %><br />
+            <%= f.text_field :ruby, placeholder: "なまえ", autocomplete: "ruby", required: true, class: "form-control input-w", value: @celebrity.ruby %>
           </div>
           <div class="create-content">
-            <div class="row">
-              <%= f.label :name, class: "required-a" %>
-              <%= f.text_field :name, placeholder: "名前", autocomplete: "name", required: true, class: "form-control input-w", value: @celebrity.name %>
-            </div>
+            <%= f.label :name, class: "required-a" %><br />
+            <%= f.text_field :name, placeholder: "名前", autocomplete: "name", required: true, class: "form-control input-w", value: @celebrity.name %>
           </div>
           <div class="create-content">
-            <div class="row">
-              <%= f.label :date_of_birth, class: "required-a" %><br />
-              <%= f.date_field :date_of_birth, autofocus: true, autocomplete: "date_of_birth", required: true, class: "form-control", value: @celebrity.date_of_birth %>
-            </div>
+            <%= f.label :date_of_birth, class: "required-a" %><br />
+            <%= f.date_field :date_of_birth, autofocus: true, autocomplete: "date_of_birth", required: true, class: "form-control", value: @celebrity.date_of_birth %>
           </div>
           <div class="create-content">
-            <div class="row">
-              <%= f.label :birthplace, class: "required-a" %>
-              <%= f.text_field :birthplace, placeholder: "出身地", required: true, class: "form-control input-w", value: @celebrity.birthplace %>
-            </div>
+            <%= f.label :birthplace, class: "required-a" %><br />
+            <%= f.text_field :birthplace, placeholder: "出身地", required: true, class: "form-control input-w", value: @celebrity.birthplace %>
           </div>
           <div class="create-content">
-            <div class="row">
-              <%= f.label :history, class: "required-a" %>
-              <%= f.text_field :history, placeholder: "歴史", required: true, class: "form-control input-w", value: @celebrity.history %>
-            </div>
+            <%= f.label :history, class: "required-a" %><br />
+            <%= f.text_area :history, placeholder: "歴史", required: true, class: "form-control input-w", value: @celebrity.history %>
           </div>
           <div class="create-content">
-            <div class="row">
-              <%= f.submit "更新", class: "btn btn-primary" %>
-            </div>
+            <%= f.submit "更新", class: "btn btn-primary" %>
           </div>
         <% end %>
 

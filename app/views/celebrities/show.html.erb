@@ -1,21 +1,34 @@
-
-<div class="container-fiuld celebrity celebrity-show">
-  <div class="row">
-    <div class="celebrity-show-view">
-      <div class="celebrity-show-view-box">
-        <div class="create-content">
-          <div class="row">
-            <p class="celebrity-ruby"><%= @celebrity.ruby %></p>
-            <p class="celebrity-name"><%= @celebrity.name %></p>
-            <p class="celebrity-date-of-birth"><%= @celebrity.date_of_birth %></p>
-            <p class="celebrity-birthplace"><%= @celebrity.birthplace %></p>
-            <p class="celebrity-history"><%= @celebrity.history %></p>
-          </div>
+<div class="container celebrity celebrity-show">
+  <div class="celebrity-show-view">
+    <div class="celebrity-inner">
+      <div class="offset">
+        <div class="icon-box">
+          <%= image_tag @celebrity.image, alt: "著名人画像", class: "celebrity-image" %>
         </div>
+      </div>
+      <div class="create-content">
+        <%= label :celebrity, :ruby %><br />
+        <p class="celebrity-ruby"><%= @celebrity.ruby %></p>
+      </div>
+      <div class="create-content">
+        <%= label :celebrity, :name %><br />
+        <p class="celebrity-name"><%= @celebrity.name %></p>
+      </div>
+      <div class="create-content">
+        <%= label :celebrity, :date_of_birth %><br />
+        <p class="celebrity-date-of-birth"><%= @celebrity.date_of_birth %></p>
+      </div>
+      <div class="create-content">
+        <%= label :celebrity, :birthplace %><br />
+        <p class="celebrity-birthplace"><%= @celebrity.birthplace %></p>
+      </div>
+      <div class="create-content">
+        <%= label :celebrity, :history %><br />
+        <p class="celebrity-history"><%= @celebrity.history %></p>
+      </div>
 
-        <div class="actions">
-          <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
-        </div>
+      <div class="actions">
+        <%= link_to "戻る", root_path, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
       </div>
     </div>
   </div>

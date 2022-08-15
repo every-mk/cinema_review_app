@@ -1,3 +1,22 @@
-<% @celebrities.each do |celebrity| %>
-  <%= link_to celebrity.name, celebrity_path(celebrity), data: {"turbolinks": false} %><br />
-<% end %>
+<div class="celebrity-search">
+  <% @celebrities.each do |celebrity| %>
+    <% if admin_signed_in? %>
+      <%= link_to edit_celebrity_path(celebrity), data: {"turbolinks": false} do %>
+        <%= image_tag celebrity.image, alt: "著名人画像", class: "celebrity-image" %>
+        <p><%= celebrity.name %></p>
+      <% end %>
+    <% else %>
+      <%= link_to celebrity_path(celebrity), data: {"turbolinks": false} do %>
+        <%= image_tag celebrity.image, alt: "著名人画像", class: "celebrity-image" %>
+        <p><%= celebrity.name %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+  <div class="actions">
+    <% if admin_signed_in? %>
+      <%= link_to "戻る", admins_path, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+    <% else %>
+      <%= link_to "戻る", root_path, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+    <% end %>
+  </div>
+</div>
