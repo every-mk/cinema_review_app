@@ -18,9 +18,10 @@ class Cinema < ApplicationRecord
   validate :screening_period_validates
 
   def screening_period_validates
-    return if self.start_date.nil? or self.end_date.nil?
+    return if start_date.nil?
+    return if end_date.nil?
 
-    if self.start_date > self.end_date
+    if start_date > end_date
       errors.add(:end_date, "は開始日より前の日付は無効です")
     end
   end
