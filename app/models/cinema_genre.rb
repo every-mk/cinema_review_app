@@ -1,2 +1,0 @@
-class CinemaGenre < ApplicationRecord
-end

@@ -1,0 +1,22 @@
+<div class="container genre genre-new">
+  <div class="genre-new-view">
+    <div class="genre-new-view-box">
+      <h1>ジャンル新規作成</h1>
+      <div class="genre-inner">
+        <%= form_with model: @genre do |f| %>
+          <div class="create-content">
+            <%= f.label :name, class: "required-a" %><br />
+            <%= f.text_field :name, placeholder: "名前", autocomplete: "name", required: true, class: "form-control input-w" %>
+          </div>
+          <div class="create-content">
+            <%= f.submit "作成", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+
+        <div class="actions">
+          <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

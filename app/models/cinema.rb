@@ -1,4 +1,5 @@
 class Cinema < ApplicationRecord
+  # has_one :genre, dependent: :destroy
   has_one :review, dependent: :destroy
   has_one_attached :image
 

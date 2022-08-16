@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :cinema_genre do
+  factory :genre do
     name { "MyString" }
   end
 end

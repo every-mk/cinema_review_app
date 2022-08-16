@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :celebrities, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :genres, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :cinemas, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :reviews, only: [:new, :create, :edit, :update]
 

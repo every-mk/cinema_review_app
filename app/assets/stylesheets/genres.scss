@@ -1,0 +1,29 @@
+.genre {
+  h1 {
+    margin: 10px 0;
+  }
+
+  .genre-inner {
+    margin-left: 10px;
+  }
+
+  form {
+    margin-bottom: 20px;
+  }
+
+  input, textarea {
+    margin-left: 20px;
+  }
+
+  [type=submit]:not(disabled) {
+    margin-left: 0;
+  }
+
+  .create-content {
+    margin-bottom: 10px;
+
+    p {
+      margin-left: 10px;
+    }
+  }
+}
