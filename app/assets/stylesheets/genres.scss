@@ -26,4 +26,27 @@
       margin-left: 10px;
     }
   }
+
+  .genre-list {
+    display: table-cell;
+    text-align: center;
+
+    table, th, td {
+      border: 2px solid #333;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    th {
+      padding: 0 20px;
+      background-color: silver;
+    }
+
+    a {
+      margin: 0;
+      color: rgb(61, 132, 255);
+    }
+  }
 }

@@ -1,5 +1,33 @@
-<div class="genre-index">
-  <!-- reactから一覧を生成 new,edit,destroy完成後に実装 -->
 
-  <%= link_to "ジャンル 新規作成", new_genre_path, data: {"turbolinks": false} %><br />
+<div class="container genre genre-new">
+  <div class="genre-new-view">
+    <div class="genre-new-view-box">
+      <h1>ジャンル</h1>
+      <div class="genre-index">
+        <div class="genre-list">
+          <table>
+            <thead>
+              <th>Id</th>
+              <th>ジャンル名</th>
+            </thead>
+            <tbody>
+              <% @genres.each do |genre| %>
+                <tr>
+                  <td><%= genre.id %></td>
+                  <td><%= link_to genre.name, edit_genre_path(genre), data: {"turbolinks": false} %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="actions">
+          <%= link_to "ジャンル 新規作成", new_genre_path, data: {"turbolinks": false}, class: "use-border" %><br />
+        </div>
+        <div class="actions">
+          <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
