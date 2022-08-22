@@ -1,2 +1,25 @@
-<h1>Genres#edit</h1>
-<p>Find me in app/views/genres/edit.html.erb</p>
+<div class="container genre genre-edit">
+  <div class="genre-edit-view">
+    <div class="genre-edit-view-box">
+      <h1>ジャンル編集</h1>
+      <div class="genre-inner">
+        <%= form_with model: @genre do |f| %>
+          <div class="create-content">
+            <%= f.label :name, class: "required-a" %><br />
+            <%= f.text_field :name, placeholder: "ジャンル名", autocomplete: "name", required: true, class: "form-control input-w", value: @genre.name %>
+          </div>
+          <div class="create-content">
+            <%= f.submit "更新", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+
+        <div class="actions">
+            <%= link_to "削除", genre_path, class: "btn btn-primary", data: { method: :delete, confirm: "本当に削除しますか？" } %>
+          </div>
+        <div class="actions">
+          <%= link_to "戻る", :back, class: "btn btn-outline-secondary form-control", data: {"turbolinks": false} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

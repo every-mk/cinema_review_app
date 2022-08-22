@@ -6,7 +6,7 @@
         <%= form_with model: @genre do |f| %>
           <div class="create-content">
             <%= f.label :name, class: "required-a" %><br />
-            <%= f.text_field :name, placeholder: "名前", autocomplete: "name", required: true, class: "form-control input-w" %>
+            <%= f.text_field :name, placeholder: "ジャンル名", autocomplete: "name", required: true, class: "form-control input-w" %>
           </div>
           <div class="create-content">
             <%= f.submit "作成", class: "btn btn-primary" %>

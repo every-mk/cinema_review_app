@@ -7,8 +7,8 @@ RSpec.describe "Genre", type: :system do
   let(:guest_user) { create(:user, email: "guest@example.com", profile: profile1) }
   let(:profile) { build(:profile) }
   let(:profile1) { build(:profile) }
-  let!(:genre) { create(:genre, name: "genre1") }
-  let(:build_genre) { build(:genre, name: "genre2") }
+  let!(:genre) { create(:genre, id: 1, name: "genre1") }
+  let(:build_genre) { build(:genre, id: 2, name: "genre2") }
 
   before do
     profile.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'profile', 'default_icon.jpeg')), filename: 'default_icon.jpeg', content_type: 'image/jpeg')
@@ -32,12 +32,12 @@ RSpec.describe "Genre", type: :system do
       expect(page).to have_content "戻る"
     end
 
-    # scenario "when genre click, go to edit" do
-    #   click_link genre.name
-    #   expect(page).to have_content "ジャンル編集"
-    # end
+    scenario "when genre click, go to edit" do
+      click_link genre.name
+      expect(page).to have_content "ジャンル編集"
+    end
 
-     scenario "when genre click, go to edit" do
+    scenario "when genre click, go to new" do
       click_link "ジャンル 新規作成"
       expect(page).to have_content "ジャンル新規作成"
     end
@@ -85,6 +85,61 @@ RSpec.describe "Genre", type: :system do
     scenario "when you back click the link, will be displayed", js: true do
       click_link "戻る"
       expect(page).to have_content "ジャンル"
+    end
+  end
+
+  describe "genre#edit" do
+    describe "admin logined" do
+      before do
+        sign_in admin
+        visit genres_path
+        visit edit_genre_path(genre)
+      end
+
+      it "when displayed, the content is displayed correctly" do
+        expect(page).to have_selector 'h1', text: "ジャンル編集"
+        expect(page).to have_selector "input[value='更新']"
+        expect(page).to have_content "削除"
+        expect(page).to have_content "戻る"
+      end
+
+      scenario "when all fill, updated" do
+        fill_in "genre_name", with: build_genre.name
+        click_button "更新"
+        expect(page).to have_content "ジャンル名を更新しました"
+      end
+
+      scenario "when name is not fill, not updated" do
+        fill_in "genre_name", with: nil
+        click_button "更新"
+        expect(page).to have_content "ジャンル名を入力してください"
+      end
+
+      scenario "when you genre delete click the link, deleted", js: true do
+        click_link "削除"
+        expect(page.accept_confirm).to eq "本当に削除しますか？"
+        expect(page).to have_content "ジャンル名を削除しました"
+        expect(Genre.exists?(id: genre.id)).to be false
+      end
+
+      scenario "when you back click the link, the account will be displayed", js: true do
+        click_link "戻る"
+        expect(page).to have_content "ジャンル"
+      end
+    end
+
+    describe "guest admin logined" do
+      before do
+        sign_in guest_admin
+        visit edit_genre_path(genre)
+      end
+
+      scenario "when you genre delete click the link, deleted", js: true do
+        click_link "削除"
+        expect(page.accept_confirm).to eq "本当に削除しますか？"
+        expect(page).to have_content "ゲストユーザーは削除権限がありません"
+        expect(Genre.exists?(id: genre.id)).to be true
+      end
     end
   end
 end
